@@ -1,8 +1,11 @@
 // Kleiner Supabase-Client (ohne externe Bibliothek, keine Drittanbieter-Skripte).
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '../config.js';
 import { lesen, schreiben } from './speicher.js';
+import { demoRpc } from './demo.js';
 
-export const online = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+// Ohne Supabase-Zugang läuft die App im Demo-Modus (alles nur auf diesem Gerät).
+export const demo = !(SUPABASE_URL && SUPABASE_ANON_KEY);
+export const online = true;
 const BASIS = SUPABASE_URL.replace(/\/$/, '');
 const SITZUNG = 'sc_trainer_sitzung';
 
@@ -36,7 +39,7 @@ async function anfrage(pfad, { method = 'GET', body, token, headers = {} } = {})
 }
 
 // ---------- Kinder: alles über geschützte Funktionen mit Zugangscode ----------
-export const rpc = (name, args, token) => anfrage(`/rest/v1/rpc/${name}`, { method: 'POST', body: args, token });
+export const rpc = (name, args, token) => (demo ? demoRpc(name, args) : anfrage(`/rest/v1/rpc/${name}`, { method: 'POST', body: args, token }));
 
 // ---------- Trainer: Login mit E-Mail + Passwort (nur Erwachsene) ----------
 export function trainerSitzung() {
@@ -44,6 +47,7 @@ export function trainerSitzung() {
 }
 
 export async function trainerLogin(email, passwort) {
+  if (demo) return speichereSitzung({ access_token: 'demo', refresh_token: 'demo', expires_at: 4102444800 });
   const s = await anfrage('/auth/v1/token?grant_type=password', { method: 'POST', body: { email, password: passwort } });
   speichereSitzung(s);
 }
@@ -51,7 +55,7 @@ export async function trainerLogin(email, passwort) {
 export function trainerLogout() {
   const s = trainerSitzung();
   schreiben(SITZUNG, null);
-  if (s) anfrage('/auth/v1/logout', { method: 'POST', token: s.access_token }).catch(() => {});
+  if (s && !demo) anfrage('/auth/v1/logout', { method: 'POST', token: s.access_token }).catch(() => {});
 }
 
 function speichereSitzung(s) {

@@ -1,11 +1,12 @@
 // SV Soltau – Soccer Coach: Kinder-Ansicht und Navigation
-import { online } from './api.js';
+import { online, demo } from './api.js';
+import { demoZuruecksetzen, DEMO_CODES } from './demo.js';
 import * as kind from './kind.js';
 import { ABZEICHEN, werteAus } from './abzeichen.js';
 import { skizzeSvg } from './skizze.js';
 import { wocheVon, inWoche, berechneWoche, wochenText } from './regeln.js';
 import { zeigeTrainer } from './trainer.js';
-import { esc, $ } from './util.js';
+import { esc, $, frage as nachfrage, meldung } from './util.js';
 
 const app = document.getElementById('app');
 
@@ -23,7 +24,13 @@ async function start() {
     return;
   }
   nachId = Object.fromEntries(daten.uebungen.map((u) => [u.id, u]));
+  if (demo) document.querySelector('.kopf')?.insertAdjacentHTML('beforeend', '<a class="demo-chip" href="#/info">DEMO</a>');
   window.addEventListener('hashchange', route);
+  document.addEventListener('click', (ev) => {
+    if (!ev.target.closest('[data-zurueck]')) return;
+    if (history.length > 1) history.back();
+    else location.hash = '#/';
+  });
   route();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 }
@@ -129,7 +136,12 @@ function zeigeCodeEingabe(meldung = '') {
         <button class="knopf" type="submit">Los geht’s!</button>
       </form>
     </section>
+    ${demo ? `<div class="hinweis gelb"><strong>Demo zum Ausprobieren:</strong> Tippe auf einen Beispiel-Code.<div class="demo-codes">${DEMO_CODES.map((c) => `<button class="chip" data-demo-code="${c}">${c}</button>`).join('')}</div></div>` : ''}
     <a class="knopf zweit" href="#/alle">Erst mal Übungen ansehen</a>`;
+  document.querySelectorAll('[data-demo-code]').forEach((b) => b.addEventListener('click', () => {
+    $('#code').value = b.dataset.demoCode;
+    $('#code-form').requestSubmit();
+  }));
   $('#code-form').addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const knopf = $('button', ev.target);
@@ -160,7 +172,7 @@ async function zeigeUebung(u) {
   const art = daten.arten[u.art];
   const darfAbhaken = !online || kind.kindCode();
   app.innerHTML = `
-    <a class="zurueck" href="javascript:history.back()">‹ Zurück</a>
+    <button class="zurueck" data-zurueck>‹ Zurück</button>
     <section class="karte">
       <div class="chips"><span class="chip gelb">${sp.icon} ${esc(sp.name)}</span><span class="chip">${art.icon} ${esc(art.name)}</span><span class="chip">⏱ ${u.dauer} Min</span></div>
       <h1>${esc(u.titel)}</h1>
@@ -224,7 +236,7 @@ async function abschliessen(u, quizPerfekt = false) {
   try {
     await kind.abhaken(u.id);
   } catch (e) {
-    alert(`Das hat nicht geklappt: ${e.message}`);
+    meldung(`Das hat nicht geklappt: ${e.message}`);
     return;
   }
   const er = kind.erfolge();
@@ -363,7 +375,7 @@ async function zeigeAbzeichen() {
 function zeigeInfo() {
   setzeNav('');
   app.innerHTML = `
-    <a class="zurueck" href="javascript:history.back()">‹ Zurück</a>
+    <button class="zurueck" data-zurueck>‹ Zurück</button>
     <section class="karte">
       <h1>Über die App</h1>
       <p>Soccer Coach ist die Heimtrainings-App der U10-2 des SV Soltau von 1912 e.V.</p>
@@ -376,15 +388,23 @@ function zeigeInfo() {
       </ul>
       ${online && kind.kindCode() ? `<button class="knopf zweit" id="abmelden">Abmelden (Code vergessen auf diesem Gerät)</button>` : ''}
       ${!online ? `<button class="knopf zweit" id="loeschen">Meinen Fortschritt auf diesem Gerät löschen</button>` : ''}
+      ${demo ? `<h2>Demo-Modus</h2><p class="klein">Alle Namen und Daten sind Beispiele und bleiben nur auf diesem Gerät.</p><button class="knopf zweit" id="demo-reset">Demo auf Anfang zurücksetzen</button>` : ''}
     </section>`;
-  $('#abmelden')?.addEventListener('click', () => {
-    if (!confirm('Wirklich abmelden? Du brauchst danach wieder deinen Code.')) return;
+  $('#abmelden')?.addEventListener('click', async () => {
+    if (!(await nachfrage('Wirklich abmelden? Du brauchst danach wieder deinen Code.', 'Abmelden'))) return;
     kind.abmelden();
     woche = null;
     location.hash = '#/';
   });
-  $('#loeschen')?.addEventListener('click', () => {
-    if (!confirm('Wirklich alles löschen?')) return;
+  $('#demo-reset')?.addEventListener('click', async () => {
+    if (!(await nachfrage('Alle Demo-Daten auf den Anfang zurücksetzen?', 'Zurücksetzen'))) return;
+    demoZuruecksetzen();
+    kind.abmelden();
+    woche = null;
+    location.hash = '#/';
+  });
+  $('#loeschen')?.addEventListener('click', async () => {
+    if (!(await nachfrage('Wirklich alles löschen?', 'Löschen', true))) return;
     kind.lokaleDatenLoeschen();
     woche = null;
     location.hash = '#/';

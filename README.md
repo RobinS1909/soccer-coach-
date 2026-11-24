@@ -18,7 +18,9 @@ Heimtrainings-App (PWA) für die U10-2 des SV Soltau von 1912 e.V.
 | `js/kind.js`, `js/api.js` | Datenzugriff (Gerät oder Supabase) |
 | `data/uebungen.json` | **alle Übungen – hier ergänzen** |
 | `supabase/schema.sql` | Datenbank + Zugriffsregeln |
-| `config.js` | Supabase-Zugang (leer = Gerätemodus) |
+| `config.js` | Supabase-Zugang (leer = Demo-Modus mit Beispiel-Kindern, alles nur auf dem Gerät) |
+| `js/demo.js` | Demo-Modus |
+| `eltern-paket/` | **fertige Unterlagen für die Eltern (PDF)** |
 | `sw.js`, `manifest.webmanifest` | Offline-Funktion, Installierbarkeit |
 | `docs/EINRICHTUNG.md` | Schritt-für-Schritt-Anleitung |
 | `docs/Datenschutz-Elterninfo.md` | Entwurf Elterninfo + Einwilligung |

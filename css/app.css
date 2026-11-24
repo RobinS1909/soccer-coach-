@@ -206,3 +206,14 @@ input:focus { outline: none; border-color: var(--gelb); }
 .segment button + button { border-left: 1px solid var(--linie); }
 .segment button.aktiv { background: var(--gelb); color: var(--schwarz); }
 .karte ul { padding-left: 1.2em; }
+
+/* Dialoge, Demo, Einwilligung */
+button.zurueck { background: none; border: 0; font: inherit; font-weight: 600; cursor: pointer; }
+.dialog-text { font-size: 1.1rem; font-weight: 600; margin: 0 0 8px; }
+.knopf.gefahr { background: var(--rot); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 500; font-size: .95rem; }
+.check input { width: 24px; height: 24px; margin: 2px 0 0; flex: none; accent-color: var(--gelb); }
+.demo-codes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.demo-codes .chip { font: inherit; font-weight: 800; letter-spacing: .1em; padding: 10px 14px; cursor: pointer; }
+.demo-chip { margin-left: auto; background: var(--gelb); color: var(--schwarz); font-weight: 900; font-size: .75rem; letter-spacing: .1em; padding: 5px 10px; border-radius: 999px; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--gelb); outline-offset: 2px; }
