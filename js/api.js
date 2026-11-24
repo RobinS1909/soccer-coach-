@@ -1,11 +1,13 @@
 // Kleiner Supabase-Client (ohne externe Bibliothek, keine Drittanbieter-Skripte).
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from '../config.js';
+import { SUPABASE_URL, SUPABASE_ANON_KEY, DEMO } from '../config.js';
 import { lesen, schreiben } from './speicher.js';
 import { demoRpc } from './demo.js';
 
-// Ohne Supabase-Zugang läuft die App im Demo-Modus (alles nur auf diesem Gerät).
-export const demo = !(SUPABASE_URL && SUPABASE_ANON_KEY);
-export const online = true;
+const mitDatenbank = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+// Demo-Modus nur, wenn ausdrücklich eingeschaltet und keine Datenbank eingetragen ist.
+export const demo = Boolean(DEMO) && !mitDatenbank;
+// online = Kinder melden sich mit Code an, Trainer-Bereich ist sichtbar
+export const online = mitDatenbank || demo;
 const BASIS = SUPABASE_URL.replace(/\/$/, '');
 const SITZUNG = 'sc_trainer_sitzung';
 
