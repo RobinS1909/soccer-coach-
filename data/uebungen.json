@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "schwerpunkte": {
+    "umschalten": { "name": "Umschalten", "lang": "Nach Ballverlust schnell hinter den Ball", "icon": "⚡" },
+    "passen": { "name": "Passen", "lang": "Passstafetten: Genauigkeit, Tempo, Ballannahme", "icon": "🎯" },
+    "dritter": { "name": "Der Dritte", "lang": "Spiel über den Dritten", "icon": "🔺" },
+    "raum": { "name": "Freier Raum", "lang": "Offene Räume erkennen und nutzen", "icon": "👀" },
+    "abwehr": { "name": "Abwehr", "lang": "Stellungsspiel, Anlaufen, Zweikampf", "icon": "🛡️" }
+  },
+  "arten": {
+    "mitBall": { "name": "Mit Ball", "icon": "⚽" },
+    "ohneBall": { "name": "Ohne Ball", "icon": "🏃" },
+    "kopf": { "name": "Kopf-Training", "icon": "🧠" }
+  },
+  "standardWoche": {
+    "basis": ["ballverlust-sprint", "wandpass-challenge", "kopf-freier-raum"],
+    "zusatz": ["annahme-tor", "abwehr-stellung", "dreieck-wand", "kopf-ballverlust"]
+  },
+  "uebungen": [
+    {
+      "id": "ballverlust-sprint",
+      "titel": "Blitz zurück!",
+      "schwerpunkt": "umschalten",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten, Hof oder langer Flur",
+      "material": ["1 Ball", "2 Markierungen (z. B. Schuhe)"],
+      "ziel": "Wenn du den Ball verlierst, sprintest du sofort zurück hinter den Ball.",
+      "schritte": [
+        "Lege zwei Schuhe etwa 6 große Schritte auseinander. Schuh A ist dein Tor, Schuh B ist das Gegner-Tor.",
+        "Dribble mit dem Ball langsam von A nach B.",
+        "Jemand ruft „Weg!“ (oder du zählst selbst bis 5). Lass den Ball sofort liegen – du hast ihn verloren!",
+        "Dreh dich blitzschnell um und sprinte zurück, bis du zwischen Ball und deinem Tor stehst.",
+        "Bleib stehen wie ein Abwehr-Profi: Knie leicht gebeugt, Blick zum Ball.",
+        "Hol den Ball und starte neu. Mach 8 Durchgänge, dazwischen kurz verschnaufen."
+      ],
+      "tipp": "Nicht ärgern, nicht stehen bleiben – umdrehen und los! Die ersten 3 Sekunden sind die wichtigsten.",
+      "video": null
+    },
+    {
+      "id": "kopf-ballverlust",
+      "titel": "Ballverlust – was jetzt?",
+      "schwerpunkt": "umschalten",
+      "art": "kopf",
+      "dauer": 5,
+      "ort": "Überall",
+      "material": ["Nur dein Kopf"],
+      "ziel": "Du weißt genau, was du nach einem Ballverlust machst.",
+      "schritte": [
+        "Schau dir jedes Bild genau an.",
+        "Tippe auf die Antwort, die du richtig findest.",
+        "Lies die Erklärung – dann geht's weiter."
+      ],
+      "tipp": "Gelb sind wir, Rot ist der Gegner. Unser Tor ist immer links.",
+      "video": null,
+      "quiz": [
+        {
+          "frage": "Du hast gerade den Ball verloren. Was machst du?",
+          "antworten": ["Stehen bleiben und ärgern", "Sofort zurücklaufen, hinter den Ball", "Zum Schiri gehen und meckern"],
+          "richtig": 1,
+          "erklaerung": "Genau! Wer sofort zurückläuft, hilft dem Team. Ärgern kannst du dich nach dem Spiel – jetzt zählt jede Sekunde."
+        },
+        {
+          "frage": "Der Gegner hat dir den Ball abgenommen. Welchen Weg läufst du?",
+          "skizze": {
+            "spieler": [
+              { "x": 62, "y": 30, "team": "wir", "ich": true },
+              { "x": 50, "y": 34, "team": "gegner" },
+              { "x": 30, "y": 22, "team": "wir" }
+            ],
+            "ball": { "x": 47, "y": 35 },
+            "pfeile": [
+              { "von": [62, 30], "nach": [84, 26], "typ": "lauf", "label": "A" },
+              { "von": [62, 30], "nach": [32, 36], "typ": "lauf", "label": "B" }
+            ]
+          },
+          "antworten": ["Weg A: nach vorne zum Gegner-Tor", "Weg B: zurück, zwischen Ball und unser Tor"],
+          "richtig": 1,
+          "erklaerung": "Richtig! Du musst hinter den Ball kommen – also zwischen Ball und unser Tor. Nur von dort kannst du verteidigen."
+        },
+        {
+          "frage": "Wohin läufst du beim Zurücklaufen am besten?",
+          "antworten": ["Zur Seitenlinie", "Richtung Mitte vor unserem Tor", "Egal, Hauptsache laufen"],
+          "richtig": 1,
+          "erklaerung": "Super! Die Mitte vor unserem Tor ist am gefährlichsten. Die schützen wir zuerst."
+        },
+        {
+          "frage": "Wann musst du nach einem Ballverlust reagieren?",
+          "antworten": ["Sofort", "Nach 10 Sekunden", "Wenn der Trainer ruft"],
+          "richtig": 0,
+          "erklaerung": "Ja! Sofort! Je schneller du umschaltest, desto weniger Zeit hat der Gegner."
+        }
+      ]
+    },
+    {
+      "id": "wandpass-challenge",
+      "titel": "Wandpass-Challenge",
+      "schwerpunkt": "passen",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Hauswand, Garage oder Mauer (vorher fragen!)",
+      "material": ["1 Ball", "1 Wand", "Uhr oder Handy-Timer"],
+      "ziel": "Genaue und feste Pässe mit der Innenseite – rechts und links.",
+      "schritte": [
+        "Stell dich 3 große Schritte vor die Wand.",
+        "Spiel den Ball mit der Innenseite flach gegen die Wand.",
+        "Stopp den zurückkommenden Ball mit einem Kontakt und pass sofort wieder.",
+        "1 Minute nur mit rechts – zähl deine Pässe!",
+        "1 Minute nur mit links – zähl wieder!",
+        "Mach 3 Runden und versuch, deinen Rekord zu knacken."
+      ],
+      "tipp": "Standbein neben den Ball, Fußspitze hoch, Knöchel fest. Profis schaffen es auch direkt – ohne zu stoppen!",
+      "video": null
+    },
+    {
+      "id": "annahme-tor",
+      "titel": "Annahme ins Mini-Tor",
+      "schwerpunkt": "passen",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Vor einer Wand",
+      "material": ["1 Ball", "1 Wand", "4 Markierungen (z. B. Schuhe, Becher)"],
+      "ziel": "Den Ball so annehmen, dass er gleich dahin rollt, wo du hinwillst.",
+      "schritte": [
+        "Stell dich 3 Schritte vor die Wand.",
+        "Baue links und rechts neben dir je ein Mini-Tor aus 2 Schuhen (1 Schritt breit, 2 Schritte von dir weg).",
+        "Pass gegen die Wand.",
+        "Nimm den Ball so an, dass er mit der ersten Berührung durch ein Mini-Tor rollt.",
+        "Abwechselnd: einmal links, einmal rechts.",
+        "20 Annahmen. Wie viele gehen durchs Tor?"
+      ],
+      "tipp": "Schau schon vorher, wohin du willst. Nimm den Ball mit dem Fuß an, der weiter weg von der Wand ist.",
+      "video": null
+    },
+    {
+      "id": "dreieck-wand",
+      "titel": "Passen und sofort weg!",
+      "schwerpunkt": "dritter",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Vor einer Wand",
+      "material": ["1 Ball", "1 Wand", "2 Markierungen"],
+      "ziel": "Nach dem Pass sofort in einen neuen Raum laufen – so wirst du zum Dritten, der angespielt wird.",
+      "schritte": [
+        "Leg zwei Schuhe nebeneinander, 3 Schritte vor der Wand und 3 Schritte auseinander: Punkt 1 und Punkt 2.",
+        "Stell dich an Punkt 1. Spiel den Ball schräg an die Wand, so dass er Richtung Punkt 2 zurückprallt.",
+        "Lauf direkt nach dem Pass los zu Punkt 2.",
+        "Nimm den Ball an Punkt 2 an und spiel ihn schräg zurück Richtung Punkt 1.",
+        "Und wieder sofort loslaufen!",
+        "3 Runden à 1 Minute. Variante zu dritt: A passt zu B, B legt ab zu C, C spielt den laufenden A an."
+      ],
+      "tipp": "Nach dem Pass nie stehen bleiben! Wer läuft, wird angespielt.",
+      "video": null
+    },
+    {
+      "id": "kopf-dritter",
+      "titel": "Wer ist der Dritte?",
+      "schwerpunkt": "dritter",
+      "art": "kopf",
+      "dauer": 5,
+      "ort": "Überall",
+      "material": ["Nur dein Kopf"],
+      "ziel": "Du erkennst, wie der Ball über einen Mitspieler zum freien Spieler kommt.",
+      "schritte": [
+        "Schau dir jedes Bild genau an.",
+        "Tippe auf die richtige Antwort.",
+        "Lies die Erklärung."
+      ],
+      "tipp": "Gelb sind wir, Rot ist der Gegner. Wir spielen nach rechts.",
+      "video": null,
+      "quiz": [
+        {
+          "frage": "C ist frei, aber der Gegner steht im Weg. Wie kommt der Ball zu C?",
+          "skizze": {
+            "spieler": [
+              { "x": 28, "y": 32, "team": "wir", "ich": true },
+              { "x": 46, "y": 18, "team": "wir", "label": "B" },
+              { "x": 62, "y": 34, "team": "wir", "label": "C" },
+              { "x": 45, "y": 33, "team": "gegner" }
+            ],
+            "ball": { "x": 31, "y": 33 }
+          },
+          "antworten": ["Direkt zu C durch den Gegner", "Erst zu B, B spielt zu C", "Gar nicht passen"],
+          "richtig": 1,
+          "erklaerung": "Genau! Das ist das Spiel über den Dritten: Der Ball geht über B zu C – am Gegner vorbei."
+        },
+        {
+          "frage": "Du hast gerade zu B gepasst. Was machst du jetzt?",
+          "antworten": ["Stehen bleiben und zuschauen", "Loslaufen in den freien Raum", "Zurück zum Torwart laufen"],
+          "richtig": 1,
+          "erklaerung": "Richtig! Nach dem Pass sofort los. Dann kannst du selbst der Dritte sein, der den Ball bekommt."
+        },
+        {
+          "frage": "B hat den Ball. Wer ist besser anspielbar?",
+          "skizze": {
+            "spieler": [
+              { "x": 40, "y": 32, "team": "wir", "label": "B" },
+              { "x": 62, "y": 16, "team": "wir", "label": "C" },
+              { "x": 62, "y": 46, "team": "wir", "label": "D" },
+              { "x": 64, "y": 44, "team": "gegner" },
+              { "x": 52, "y": 38, "team": "gegner" }
+            ],
+            "ball": { "x": 43, "y": 33 },
+            "pfeile": [{ "von": [20, 40], "nach": [36, 33], "typ": "pass" }]
+          },
+          "antworten": ["C – er ist frei", "D – er hat einen Gegner direkt neben sich"],
+          "richtig": 0,
+          "erklaerung": "Super! C steht frei. D wird gedeckt – ein Pass zu D würde wahrscheinlich abgefangen."
+        }
+      ]
+    },
+    {
+      "id": "schulterblick-dribbling",
+      "titel": "Schulterblick-Dribbling",
+      "schwerpunkt": "raum",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten oder Hof",
+      "material": ["1 Ball", "1 Helfer (Mama, Papa, Geschwister)"],
+      "ziel": "Vor der Ballannahme über die Schulter schauen und den freien Weg finden.",
+      "schritte": [
+        "Dribble langsam geradeaus.",
+        "Dein Helfer steht hinter dir und hält eine Hand hoch: links oder rechts, mit 1 bis 5 Fingern.",
+        "Schau kurz über die Schulter und ruf die Zahl laut.",
+        "Dribble dann schnell in die andere Richtung – weg von der Hand. Dort ist der freie Raum!",
+        "Mach 10 Durchgänge.",
+        "Profi-Stufe: Schau zweimal über die Schulter, bevor du losdribbelst."
+      ],
+      "tipp": "Beim Schulterblick nur den Kopf drehen – der Ball bleibt dicht an deinem Fuß.",
+      "video": null
+    },
+    {
+      "id": "kopf-freier-raum",
+      "titel": "Wo ist der freie Raum?",
+      "schwerpunkt": "raum",
+      "art": "kopf",
+      "dauer": 5,
+      "ort": "Überall",
+      "material": ["Nur dein Kopf"],
+      "ziel": "Du siehst sofort, wo Platz ist.",
+      "schritte": [
+        "Schau dir jedes Bild genau an.",
+        "Tippe auf die richtige Antwort.",
+        "Lies die Erklärung."
+      ],
+      "tipp": "Gelb sind wir, Rot ist der Gegner. Wir spielen nach rechts.",
+      "video": null,
+      "quiz": [
+        {
+          "frage": "Wohin dribbelst du? Wo ist der freie Raum?",
+          "skizze": {
+            "spieler": [
+              { "x": 35, "y": 32, "team": "wir", "ich": true },
+              { "x": 55, "y": 14, "team": "gegner" },
+              { "x": 60, "y": 22, "team": "gegner" },
+              { "x": 52, "y": 30, "team": "gegner" }
+            ],
+            "ball": { "x": 38, "y": 33 },
+            "zonen": [
+              { "x": 62, "y": 6, "w": 22, "h": 16, "label": "1" },
+              { "x": 62, "y": 40, "w": 22, "h": 18, "label": "2" }
+            ]
+          },
+          "antworten": ["Raum 1 (oben)", "Raum 2 (unten)"],
+          "richtig": 1,
+          "erklaerung": "Richtig! Oben stehen viele Gegner. Unten ist Platz – da kannst du hindribbeln."
+        },
+        {
+          "frage": "Du stehst direkt hinter einem Gegner. Kann dein Mitspieler dich anspielen?",
+          "skizze": {
+            "spieler": [
+              { "x": 25, "y": 32, "team": "wir" },
+              { "x": 45, "y": 32, "team": "gegner" },
+              { "x": 58, "y": 32, "team": "wir", "ich": true }
+            ],
+            "ball": { "x": 28, "y": 33 },
+            "pfeile": [{ "von": [58, 32], "nach": [58, 16], "typ": "lauf" }]
+          },
+          "antworten": ["Ja, klar", "Nein – ich muss zur Seite gehen"],
+          "richtig": 1,
+          "erklaerung": "Genau! Hinter dem Gegner bist du versteckt. Geh ein paar Schritte zur Seite, damit der Pass frei ist."
+        },
+        {
+          "frage": "Was machst du, bevor der Ball zu dir kommt?",
+          "antworten": ["Auf den Boden schauen", "Über die Schulter schauen", "Die Augen zumachen"],
+          "richtig": 1,
+          "erklaerung": "Super! Mit dem Schulterblick siehst du, wo Gegner sind und wo Platz ist – noch bevor du den Ball hast."
+        }
+      ]
+    },
+    {
+      "id": "abwehr-stellung",
+      "titel": "Abwehr-Profi: Anlaufen & Stellen",
+      "schwerpunkt": "abwehr",
+      "art": "ohneBall",
+      "dauer": 10,
+      "ort": "Garten, Hof oder Flur",
+      "material": ["2 Markierungen (z. B. Schuhe)"],
+      "ziel": "Schnell anlaufen, abbremsen und richtig vor dem Gegner stehen.",
+      "schritte": [
+        "Leg zwei Schuhe 6 Schritte auseinander: Start und Gegner.",
+        "Sprinte vom Start Richtung Gegner-Schuh.",
+        "Die letzten 2 Schritte: ganz kleine, schnelle Trippelschritte zum Abbremsen.",
+        "Stopp 1 Schritt vor dem Schuh in Abwehr-Stellung: seitlich stehen, ein Fuß vorne, Knie gebeugt, auf den Fußballen.",
+        "Halte die Stellung 3 Sekunden. Dann rückwärts zum Start zurück.",
+        "8 Durchgänge. Wechsle jedes Mal, welcher Fuß vorne ist."
+      ],
+      "tipp": "Nicht reinspringen! Wer zu schnell ankommt, wird leicht ausgespielt. Erst bremsen, dann stellen.",
+      "video": null
+    },
+    {
+      "id": "spiegel-duell",
+      "titel": "Spiegel-Duell",
+      "schwerpunkt": "abwehr",
+      "art": "ohneBall",
+      "dauer": 8,
+      "ort": "Drinnen oder draußen",
+      "material": ["1 Partner (Familie, Freunde)", "2 Markierungen"],
+      "ziel": "Schnell reagieren und immer vor dem Gegner bleiben.",
+      "schritte": [
+        "Leg zwei Schuhe 4 Schritte auseinander. Ihr steht euch zwischen den Schuhen gegenüber.",
+        "Dein Partner bewegt sich seitlich hin und her – mal schnell, mal langsam, mal mit Finte.",
+        "Du bleibst immer genau gegenüber, wie ein Spiegel. Abwehr-Stellung: Knie gebeugt, seitliche Schritte.",
+        "30 Sekunden pro Runde, dann tauscht ihr.",
+        "4 Runden.",
+        "Allein? Dann lass dir „links!“, „rechts!“, „vor!“, „zurück!“ zurufen und reagiere sofort."
+      ],
+      "tipp": "Füße nicht überkreuzen! Kleine, schnelle Seitschritte – so bleibst du im Gleichgewicht.",
+      "video": null
+    }
+  ]
+}

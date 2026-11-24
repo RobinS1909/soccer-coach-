@@ -1,0 +1,21 @@
+ELTERN-PAKET – SO GEHST DU VOR
+
+Inhalt dieses Ordners:
+  0_Nachricht_an_Eltern_WhatsApp.txt        -> Text zum Kopieren in die Eltern-Gruppe
+  1_Elternbrief_und_Einwilligung.pdf        -> Seite 1: Info, Seite 2: Einwilligung zum Unterschreiben
+  2_Anleitung_fuer_Eltern_und_Kinder.pdf    -> erst NACH Abgabe der Einwilligung verschicken
+  3_Code-Karten_zum_Ausschneiden.pdf        -> 8 Karten pro Blatt, Name + Code von Hand eintragen
+  vorlagen/                                 -> Quelldateien, falls Texte geändert werden sollen
+
+Ablauf:
+  1. Nachricht (0) + Elternbrief (1) in die Eltern-Gruppe schicken.
+     Vorher auf Seite 1 unten Ansprechpartner + Telefon/E-Mail eintragen (oder von Hand ergänzen).
+  2. Eltern geben die unterschriebene Seite 2 ab (Papier oder Foto).
+     -> Das ist der Nachweis. Original aufbewahren, im unteren Feld Datum + Kürzel eintragen.
+  3. Erst dann das Kind in der App anlegen (Trainer -> Kinder). Die App fragt dabei
+     ausdrücklich, ob die Einwilligung vorliegt.
+  4. Code auf eine Code-Karte (3) schreiben und dem Kind geben, dazu die Anleitung (2).
+  5. Widerruf durch Eltern: Kind in der App löschen -> alle Daten sind weg.
+
+Vor dem Verschicken bitte einmal vom Vereinsvorstand absegnen lassen
+(der Verein ist rechtlich verantwortlich).

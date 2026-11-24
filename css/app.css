@@ -1,0 +1,221 @@
+/* SV Soltau – Soccer Coach
+   Farben: schwarzer Hintergrund, weiße Schrift, gelbe Highlights */
+:root {
+  --schwarz: #000;
+  --flaeche: #141414;
+  --flaeche-2: #1f1f1f;
+  --linie: #2e2e2e;
+  --weiss: #fff;
+  --grau: #b3b3b3;
+  --gelb: #ffd500;
+  --gelb-dunkel: #c9a800;
+  --gruen: #2fbf71;
+  --rot: #ff5a5f;
+  --radius: 16px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--schwarz);
+  color: var(--weiss);
+  font: 17px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  padding-bottom: calc(84px + env(safe-area-inset-bottom));
+  -webkit-tap-highlight-color: transparent;
+}
+a { color: var(--gelb); }
+h1 { font-size: 1.6rem; line-height: 1.2; margin: .2em 0 .4em; }
+h2 { font-size: 1.15rem; margin: 1.2em 0 .5em; }
+.karte h2:first-child { margin-top: 0; }
+p { margin: .4em 0; }
+.klein { color: var(--grau); font-size: .88rem; display: block; }
+.mitte { text-align: center; }
+.block { display: block; margin: 20px 0; }
+
+/* Kopf */
+.kopf {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; gap: 10px;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background: rgba(0, 0, 0, .92); backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--gelb);
+}
+.kopf div { display: flex; flex-direction: column; line-height: 1.1; }
+.kopf strong { color: var(--gelb); text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
+.kopf span { font-weight: 800; font-size: 1.1rem; }
+
+main { max-width: 640px; margin: 0 auto; padding: 16px; }
+
+/* Navigation unten (große Ziele für Kinderhände) */
+.nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 5;
+  display: flex; justify-content: space-around;
+  background: var(--flaeche); border-top: 1px solid var(--linie);
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.nav a {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  color: var(--grau); text-decoration: none; font-size: .78rem; font-weight: 600;
+  padding: 6px 0; border-radius: 12px; min-height: 56px; justify-content: center;
+}
+.nav a span { font-size: 1.5rem; line-height: 1.1; }
+.nav a.aktiv { color: var(--gelb); background: rgba(255, 213, 0, .1); }
+.nav a[hidden] { display: none; }
+
+/* Karten */
+.karte { background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--radius); padding: 18px; margin: 0 0 14px; }
+.karte.held { border-color: var(--gelb); background: linear-gradient(160deg, #1d1a05, var(--flaeche) 55%); }
+.gross-icon { font-size: 3.4rem; line-height: 1; margin: 6px 0; }
+.laden { font-size: 2.5rem; text-align: center; padding: 60px 0; animation: drehen 1s linear infinite; }
+@keyframes drehen { to { transform: rotate(360deg); } }
+
+/* Fortschritt */
+.balken { height: 22px; background: var(--flaeche-2); border-radius: 999px; overflow: hidden; margin: 12px 0 6px; border: 1px solid var(--linie); }
+.balken span { display: block; height: 100%; background: var(--gelb); border-radius: 999px; transition: width .6s ease; min-width: 0; }
+.klein-balken { height: 8px; margin: 4px 0 14px; }
+.zahl { font-size: 1.05rem; }
+.zahl strong { color: var(--gelb); font-size: 1.6rem; }
+
+/* Knöpfe */
+.knopf {
+  display: block; width: 100%; text-align: center; text-decoration: none;
+  background: var(--gelb); color: var(--schwarz); border: 0; border-radius: 14px;
+  font: inherit; font-weight: 800; font-size: 1.12rem;
+  padding: 16px; margin: 12px 0 0; min-height: 56px; cursor: pointer;
+}
+.knopf:active { transform: scale(.98); background: var(--gelb-dunkel); }
+.knopf:disabled { opacity: .5; }
+.knopf.zweit { background: transparent; color: var(--weiss); border: 2px solid var(--linie); }
+.link { background: none; border: 0; color: var(--gelb); font: inherit; text-decoration: underline; padding: 10px 6px; cursor: pointer; }
+.link.rot { color: var(--rot); }
+.zurueck { display: inline-block; color: var(--grau); text-decoration: none; padding: 6px 0 12px; font-weight: 600; }
+
+/* Listen von Übungen */
+.liste { display: flex; flex-direction: column; gap: 10px; }
+.uebung {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--radius);
+  padding: 14px; color: var(--weiss); text-decoration: none; min-height: 72px;
+}
+.uebung:active { background: var(--flaeche-2); }
+.uebung .art { font-size: 1.8rem; width: 44px; text-align: center; flex: none; }
+.uebung .text { flex: 1; display: flex; flex-direction: column; }
+.uebung .haken {
+  width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--linie); flex: none;
+  display: grid; place-items: center; font-weight: 900; font-size: 1.2rem;
+}
+.uebung.fertig { border-color: rgba(255, 213, 0, .4); }
+.uebung.fertig .haken { background: var(--gelb); border-color: var(--gelb); color: var(--schwarz); }
+.uebung.fertig strong { color: var(--grau); }
+
+/* Chips & Filter */
+.chips, .filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.chip { display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--flaeche-2); color: var(--weiss); font-size: .85rem; font-weight: 600; text-decoration: none; border: 1px solid var(--linie); }
+.chip.gelb { background: var(--gelb); color: var(--schwarz); border-color: var(--gelb); }
+.filter { margin: 8px 0 14px; }
+.filter .chip { padding: 9px 14px; }
+
+/* Übungs-Details */
+.ziel { font-size: 1.05rem; }
+.material { padding-left: 1.2em; margin: 0; }
+.schritte { list-style: none; counter-reset: s; padding: 0; margin: 0; }
+.schritte li { counter-increment: s; position: relative; padding: 4px 0 14px 48px; min-height: 40px; }
+.schritte li::before {
+  content: counter(s); position: absolute; left: 0; top: 0;
+  width: 34px; height: 34px; border-radius: 50%; background: var(--gelb); color: var(--schwarz);
+  display: grid; place-items: center; font-weight: 900;
+}
+.tipp { background: rgba(255, 213, 0, .1); border-left: 4px solid var(--gelb); border-radius: 10px; padding: 14px; margin: 0 0 14px; }
+.bild { width: 100%; border-radius: var(--radius); margin-bottom: 14px; }
+.aktion { margin: 8px 0 20px; }
+.erledigt { text-align: center; color: var(--gelb); font-weight: 800; font-size: 1.2rem; margin: 20px 0 0; }
+.aktion .link { display: block; margin: 0 auto; }
+
+/* Hinweise */
+.hinweis { background: var(--flaeche-2); border: 1px solid var(--linie); border-radius: 12px; padding: 12px 14px; margin: 0 0 14px; font-size: .95rem; }
+.hinweis.gelb { border-color: var(--gelb); }
+.fehler { color: var(--rot); min-height: 1.2em; font-weight: 600; }
+
+/* Formulare */
+label { display: block; font-weight: 600; margin: 10px 0; }
+input {
+  display: block; width: 100%; margin-top: 6px; padding: 14px; font: inherit; font-size: 1.05rem;
+  background: var(--schwarz); color: var(--weiss); border: 2px solid var(--linie); border-radius: 12px;
+}
+input:focus { outline: none; border-color: var(--gelb); }
+.code-eingabe { text-align: center; font-size: 1.8rem; letter-spacing: .25em; font-weight: 800; text-transform: uppercase; margin: 16px 0 4px; }
+.inline-form { display: flex; gap: 8px; align-items: stretch; }
+.inline-form input { margin: 0; flex: 1; min-width: 0; }
+.inline-form .knopf { width: auto; margin: 0; padding: 0 18px; }
+
+/* Quiz */
+.skizze { width: 100%; height: auto; display: block; border-radius: 12px; margin: 8px 0 14px; }
+.frage { font-size: 1.25rem; margin: 0 0 8px; }
+.antworten { display: flex; flex-direction: column; gap: 10px; }
+.antwort {
+  font: inherit; font-weight: 700; text-align: left; padding: 16px; min-height: 56px;
+  background: var(--flaeche-2); color: var(--weiss); border: 2px solid var(--linie); border-radius: 14px; cursor: pointer;
+}
+.antwort.richtig { border-color: var(--gruen); background: rgba(47, 191, 113, .18); }
+.antwort.falsch { border-color: var(--rot); background: rgba(255, 90, 95, .15); }
+.antwort:disabled:not(.richtig):not(.falsch) { opacity: .5; }
+.erklaerung { margin-top: 14px; padding: 14px; border-radius: 12px; background: var(--flaeche-2); border-left: 4px solid var(--gruen); }
+.erklaerung.nein { border-left-color: var(--rot); }
+
+/* Abzeichen */
+.abzeichen { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 14px; }
+.abz { background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--radius); padding: 14px 10px; text-align: center; display: flex; flex-direction: column; gap: 4px; opacity: .55; }
+.abz.hat { opacity: 1; border-color: var(--gelb); }
+.abz-icon { font-size: 2.4rem; }
+
+/* Feier-Overlay & Code-Anzeige */
+.feier { position: fixed; inset: 0; z-index: 20; background: rgba(0, 0, 0, .85); display: grid; place-items: center; padding: 20px; }
+.feier-box { background: var(--flaeche); border: 2px solid var(--gelb); border-radius: 22px; padding: 24px; max-width: 420px; width: 100%; text-align: center; }
+.hupf { animation: hupf .6s ease 2; }
+@keyframes hupf { 50% { transform: scale(1.3) rotate(-8deg); } }
+.neues-abzeichen { display: flex; align-items: center; gap: 12px; text-align: left; background: var(--flaeche-2); border-radius: 12px; padding: 10px 14px; margin: 10px 0; }
+.neues-abzeichen span { font-size: 2.2rem; }
+.code-anzeige { font-size: 2.6rem; font-weight: 900; letter-spacing: .2em; color: var(--gelb); margin: 12px 0; user-select: all; }
+
+/* Trainer */
+.kopfzeile { display: flex; align-items: center; justify-content: space-between; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 16px; padding-bottom: 4px; }
+.tabs button { flex: none; font: inherit; font-weight: 700; font-size: .92rem; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--linie); background: var(--flaeche); color: var(--weiss); }
+.tabs button.aktiv { background: var(--gelb); color: var(--schwarz); border-color: var(--gelb); }
+.wochenwahl { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+.rund { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--linie); background: var(--flaeche); color: var(--gelb); font-size: 1.6rem; font-weight: 800; }
+.kind-zeile { background: var(--flaeche); border: 1px solid var(--linie); border-radius: 12px; padding: 12px 14px; }
+.kind-zeile.fertig { border-color: rgba(255, 213, 0, .5); }
+.kind-zeile summary { display: flex; align-items: center; gap: 10px; list-style: none; cursor: pointer; }
+.kind-zeile summary::-webkit-details-marker { display: none; }
+.name { font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mini-balken { width: 90px; height: 10px; background: var(--flaeche-2); border-radius: 99px; overflow: hidden; flex: none; }
+.mini-balken span { display: block; height: 100%; background: var(--gelb); }
+.wert { width: 52px; text-align: right; font-weight: 700; flex: none; }
+.anw-zeile, .kind-verw { display: flex; align-items: center; gap: 8px; background: var(--flaeche); border: 1px solid var(--linie); border-radius: 12px; padding: 8px 8px 8px 14px; }
+.anw { font: inherit; font-weight: 700; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--linie); background: var(--flaeche-2); color: var(--grau); min-height: 44px; }
+.anw.da { background: var(--gelb); color: var(--schwarz); border-color: var(--gelb); }
+.anw.weg { background: var(--rot); color: var(--schwarz); border-color: var(--rot); }
+.zeile-knoepfe { margin-bottom: 10px; }
+.plan-zeile { background: var(--flaeche); border: 1px solid var(--linie); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.plan-zeile > div:first-child { display: flex; flex-direction: column; }
+.segment { display: flex; border: 1px solid var(--linie); border-radius: 10px; overflow: hidden; }
+.segment button { flex: 1; font: inherit; font-weight: 700; padding: 10px; border: 0; background: var(--flaeche-2); color: var(--grau); min-height: 44px; }
+.segment button + button { border-left: 1px solid var(--linie); }
+.segment button.aktiv { background: var(--gelb); color: var(--schwarz); }
+.karte ul { padding-left: 1.2em; }
+
+/* Dialoge, Demo, Einwilligung */
+button.zurueck { background: none; border: 0; font: inherit; font-weight: 600; cursor: pointer; }
+.dialog-text { font-size: 1.1rem; font-weight: 600; margin: 0 0 8px; }
+.knopf.gefahr { background: var(--rot); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 500; font-size: .95rem; }
+.check input { width: 24px; height: 24px; margin: 2px 0 0; flex: none; accent-color: var(--gelb); }
+.demo-codes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.demo-codes .chip { font: inherit; font-weight: 800; letter-spacing: .1em; padding: 10px 14px; cursor: pointer; }
+.demo-chip { margin-left: auto; background: var(--gelb); color: var(--schwarz); font-weight: 900; font-size: .75rem; letter-spacing: .1em; padding: 5px 10px; border-radius: 999px; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--gelb); outline-offset: 2px; }
+.kopf .logo { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--gelb); background: #fff; flex: none; }
+.willkommen-logo { width: 180px; height: 180px; max-width: 60%; height: auto; border-radius: 50%; border: 3px solid var(--gelb); background: #fff; display: block; margin: 4px auto 8px; }
