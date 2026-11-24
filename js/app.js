@@ -127,7 +127,7 @@ function zeigeCodeEingabe(meldung = '') {
   setzeNav('woche');
   app.innerHTML = `
     <section class="karte held mitte">
-      <div class="gross-icon">⚽</div>
+      <img class="willkommen-logo" src="icons/logo.png" alt="Maskottchen des SV Soltau" width="180" height="180">
       <h1>Willkommen!</h1>
       <p>Gib deinen Code ein. Den bekommst du von deinem Trainer.</p>
       <form id="code-form">

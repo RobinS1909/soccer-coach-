@@ -1,10 +1,10 @@
 // Service Worker: macht die App offline nutzbar.
 // Bei jeder Änderung an Dateien VERSION erhöhen, damit Handys die neue Version laden.
-const VERSION = 'sc-v2';
+const VERSION = 'sc-v3';
 const DATEIEN = [
   './', 'index.html', 'css/app.css', 'config.js', 'manifest.webmanifest',
   'js/app.js', 'js/api.js', 'js/kind.js', 'js/trainer.js', 'js/regeln.js', 'js/abzeichen.js', 'js/skizze.js', 'js/speicher.js', 'js/util.js', 'js/demo.js', 'js/trainer-daten.js',
-  'data/uebungen.json', 'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon.png',
+  'data/uebungen.json', 'icons/logo-klein.png', 'icons/logo.png', 'icons/icon-192.png', 'icons/apple-touch-icon.png',
 ];
 
 self.addEventListener('install', (e) => {

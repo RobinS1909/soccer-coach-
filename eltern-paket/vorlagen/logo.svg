@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#000"/>
-  <path d="M256 52 L428 112 V250 C428 352 356 424 256 462 C156 424 84 352 84 250 V112 Z" fill="#FFD500"/>
-  <path d="M256 84 L398 134 V250 C398 334 340 396 256 430 C172 396 114 334 114 250 V134 Z" fill="#000"/>
-  <circle cx="256" cy="244" r="96" fill="#fff"/>
-  <path d="M256 196 l40 29 -15 47 h-50 l-15 -47 z" fill="#000"/>
-  <path d="M256 148 v48 M296 225 l46 -14 M281 272 l28 40 M231 272 l-28 40 M216 225 l-46 -14" stroke="#000" stroke-width="10" fill="none"/>
-  <text x="256" y="392" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="56" fill="#FFD500">SVS</text>
-</svg>
