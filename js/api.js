@@ -20,7 +20,9 @@ async function anfrage(pfad, { method = 'GET', body, token, headers = {} } = {})
       method,
       headers: {
         apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${token || SUPABASE_ANON_KEY}`,
+        // Nur angemeldete Trainer senden einen Token; Kinder nur den öffentlichen Schlüssel
+        // (funktioniert mit dem alten "anon"- und dem neuen "publishable"-Schlüssel).
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
         'Content-Type': 'application/json',
         ...headers,
       },

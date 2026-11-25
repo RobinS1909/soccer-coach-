@@ -378,7 +378,7 @@ function zeigeInfo() {
     <button class="zurueck" data-zurueck>‹ Zurück</button>
     <section class="karte">
       <h1>Über die App</h1>
-      <p>Soccer Coach ist die Heimtrainings-App der U10-2 des SV Soltau von 1912 e.V.</p>
+      <p>Soccer Coach ist die Heimtrainings-App der U10 des SV Soltau von 1912 e.V.</p>
       <h2>Datenschutz in Kürze</h2>
       <ul>
         <li>Wir speichern nur: Vorname/Spitzname, erledigte Einheiten mit Datum und die Anwesenheit beim Training.</li>

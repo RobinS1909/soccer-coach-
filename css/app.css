@@ -219,3 +219,33 @@ button.zurueck { background: none; border: 0; font: inherit; font-weight: 600; c
 :focus-visible { outline: 3px solid var(--gelb); outline-offset: 2px; }
 .kopf .logo { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--gelb); background: #fff; flex: none; }
 .willkommen-logo { width: 180px; height: 180px; max-width: 60%; height: auto; border-radius: 50%; border: 3px solid var(--gelb); background: #fff; display: block; margin: 4px auto 8px; }
+
+/* Viele Kinder anlegen + Code-Liste */
+textarea { display: block; width: 100%; margin-top: 6px; padding: 14px; font: inherit; background: var(--schwarz); color: var(--weiss); border: 2px solid var(--linie); border-radius: 12px; resize: vertical; }
+textarea:focus { outline: none; border-color: var(--gelb); }
+details.karte > summary { list-style: none; cursor: pointer; }
+details.karte > summary::-webkit-details-marker { display: none; }
+details.karte > summary h2::after { content: ' ▾'; color: var(--gelb); }
+details[open].karte > summary h2::after { content: ' ▴'; }
+h2.inline { display: inline; margin: 0; }
+body.druckmodus > *:not(.code-liste-seite):not(.feier) { display: none !important; }
+.code-liste-seite { max-width: 640px; margin: 0 auto; padding: 16px; }
+.code-tabelle { width: 100%; border-collapse: collapse; margin: 10px 0; }
+.code-tabelle th, .code-tabelle td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--linie); }
+.code-tabelle .code { font-weight: 900; letter-spacing: .15em; color: var(--gelb); font-variant-numeric: tabular-nums; }
+.druck-karten { display: none; }
+@media print {
+  @page { size: A4; margin: 10mm; }
+  body { background: #fff !important; color: #000 !important; padding: 0 !important; }
+  .nicht-drucken { display: none !important; }
+  .code-liste-seite { padding: 0; max-width: none; }
+  .druck-karten { display: grid; grid-template-columns: 1fr 1fr; }
+  .druck-karte { border: 1px dashed #999; height: 66mm; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; break-inside: avoid; color: #000; }
+  .dk-kopf { display: flex; gap: 8px; align-items: center; font-size: 10pt; line-height: 1.2; border-bottom: 3px solid #FFD500; padding-bottom: 6px; }
+  .dk-kopf img { width: 34px; height: 34px; border-radius: 50%; }
+  .dk-name { font-size: 15pt; font-weight: 800; margin-top: 4px; }
+  .dk-l { font-size: 8pt; text-transform: uppercase; letter-spacing: .1em; color: #555; }
+  .dk-code { font-size: 26pt; font-weight: 900; letter-spacing: .25em; border: 2px solid #000; border-radius: 6px; text-align: center; padding: 4px 0; }
+  .dk-app { font-size: 9pt; }
+  .dk-tipp { font-size: 8pt; color: #555; margin-top: auto; }
+}

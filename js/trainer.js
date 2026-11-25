@@ -193,6 +193,16 @@ async function kinder(inhalt) {
         <button class="knopf">Anlegen</button>
       </form>
     </section>
+    <details class="karte" id="viele-box">
+      <summary><h2 class="inline">Viele Kinder auf einmal anlegen</h2></summary>
+      <p class="klein">Ein Vorname pro Zeile. Gleiche Vornamen bitte unterscheiden, z. B. „Max B.“ und „Max K.“ (nur der erste Buchstabe des Nachnamens).</p>
+      <form id="viele">
+        <textarea id="namen" rows="10" placeholder="Max&#10;Lena&#10;Tom&#10;…" aria-label="Vornamen, einer pro Zeile"></textarea>
+        <p class="klein" id="anzahl">0 Kinder</p>
+        <label class="check"><input type="checkbox" id="einwilligung-alle"> Für alle diese Kinder liegt mir die unterschriebene Einwilligung der Eltern vor.</label>
+        <button class="knopf">Alle anlegen und Codes erzeugen</button>
+      </form>
+    </details>
     <div class="liste">${kids.map((k) => `
       <div class="kind-verw"><span class="name">${esc(k.name)}</span>
         <button class="link" data-code="${k.id}">Neuer Code</button>
@@ -205,6 +215,31 @@ async function kinder(inhalt) {
     if (!$('#einwilligung').checked) return meldung('Bitte erst bestätigen, dass die Einwilligung der Eltern vorliegt.');
     const r = await td.kindAnlegen(name);
     zeigeCode(name, r.code);
+  });
+  const namenListe = () => [...new Set($('#namen').value.split('\n').map((n) => n.trim().slice(0, 30)).filter(Boolean))];
+  $('#namen').addEventListener('input', () => { const n = namenListe().length; $('#anzahl').textContent = `${n} ${n === 1 ? 'Kind' : 'Kinder'}`; });
+  $('#viele').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const namen = namenListe();
+    if (!namen.length) return meldung('Bitte mindestens einen Vornamen eintragen.');
+    if (!$('#einwilligung-alle').checked) return meldung('Bitte erst bestätigen, dass für alle Kinder die Einwilligung der Eltern vorliegt.');
+    const vorhanden = new Set(kids.map((k) => k.name.toLowerCase()));
+    const doppelt = namen.filter((n) => vorhanden.has(n.toLowerCase()));
+    if (doppelt.length && !(await frage(`Diese Namen gibt es schon: ${doppelt.join(', ')}. Trotzdem zusätzlich anlegen?`, 'Trotzdem anlegen'))) return;
+    const knopf = $('#viele button');
+    knopf.disabled = true;
+    const ergebnis = [];
+    try {
+      for (const [i, name] of namen.entries()) {
+        knopf.textContent = `Lege an … ${i + 1} von ${namen.length}`;
+        const r = await td.kindAnlegen(name);
+        ergebnis.push({ name, code: r.code });
+      }
+    } catch (e) {
+      meldung(`Fehler nach ${ergebnis.length} Kindern: ${e.message}`);
+    }
+    if (ergebnis.length) zeigeCodeListe(ergebnis);
+    else render();
   });
   inhalt.querySelectorAll('[data-code]').forEach((b) => b.addEventListener('click', async () => {
     const name = b.parentElement.querySelector('.name').textContent;
@@ -231,3 +266,32 @@ function zeigeCode(name, code) {
   $('button', div).addEventListener('click', () => { div.remove(); render(); });
 }
 
+
+// Liste aller neuen Codes + Druckansicht als Code-Karten
+function zeigeCodeListe(liste) {
+  const appAdresse = (location.origin + location.pathname).replace(/index\.html$/, '').replace(/^https?:\/\//, '');
+  const div = document.createElement('div');
+  div.className = 'code-liste-seite';
+  div.innerHTML = `
+    <div class="nicht-drucken">
+      <h1>${liste.length} Codes erstellt</h1>
+      <div class="hinweis gelb"><strong>Wichtig:</strong> Die Codes werden nur jetzt angezeigt. Drucke die Karten aus oder mach Screenshots, bevor du auf „Fertig“ tippst.</div>
+      <table class="code-tabelle"><thead><tr><th>Name</th><th>Code</th></tr></thead>
+        <tbody>${liste.map((k) => `<tr><td>${esc(k.name)}</td><td class="code">${esc(k.code)}</td></tr>`).join('')}</tbody></table>
+      <button class="knopf" id="drucken">Als Code-Karten drucken</button>
+      <button class="knopf zweit" id="fertig-liste">Fertig – Codes sind gesichert</button>
+    </div>
+    <div class="druck-karten">${liste.map((k) => `
+      <div class="druck-karte"><div class="dk-kopf"><img src="icons/logo-klein.png" alt=""><div><b>SV Soltau</b><br>Soccer Coach</div></div>
+        <div class="dk-name">${esc(k.name)}</div><div class="dk-l">Dein Code</div><div class="dk-code">${esc(k.code)}</div>
+        <div class="dk-app">App: ${esc(appAdresse)}</div><div class="dk-tipp">Code nicht weitergeben – nur für dich!</div></div>`).join('')}</div>`;
+  document.body.appendChild(div);
+  document.body.classList.add('druckmodus');
+  $('#drucken', div).addEventListener('click', () => window.print());
+  $('#fertig-liste', div).addEventListener('click', async () => {
+    if (!(await frage('Hast du alle Codes ausgedruckt oder gesichert? Sie werden danach nicht mehr angezeigt.', 'Ja, gesichert'))) return;
+    div.remove();
+    document.body.classList.remove('druckmodus');
+    render();
+  });
+}
