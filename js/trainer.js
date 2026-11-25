@@ -81,7 +81,7 @@ function zeigeLogin(meldung = '') {
 }
 
 async function render() {
-  const tabs = { uebersicht: 'Übersicht', anwesenheit: 'Anwesenheit', plan: 'Wochenplan', kinder: 'Kinder' };
+  const tabs = { uebersicht: 'Übersicht', anwesenheit: 'Anwesenheit', plan: 'Wochenplan', kinder: 'Kinder', team: 'Team' };
   el.innerHTML = `
     <div class="kopfzeile"><h1>Trainer</h1><button class="link" id="logout">Abmelden</button></div>
     <div class="tabs">${Object.entries(tabs).map(([k, n]) => `<button data-tab="${k}" class="${tab === k ? 'aktiv' : ''}">${n}</button>`).join('')}</div>
@@ -94,6 +94,7 @@ async function render() {
     if (tab === 'anwesenheit') await anwesenheit(inhalt);
     if (tab === 'plan') await plan(inhalt);
     if (tab === 'kinder') await kinder(inhalt);
+    if (tab === 'team') await team(inhalt);
   } catch (e) {
     if (e.status === 401 || !trainerSitzung()) return zeigeLogin('Bitte neu anmelden.');
     inhalt.innerHTML = `<div class="hinweis">Fehler: ${esc(e.message)}</div>`;
@@ -332,5 +333,59 @@ function zeigeCodeListe(liste) {
     div.remove();
     document.body.classList.remove('druckmodus');
     render();
+  });
+}
+
+// ---------- Team: Trainer freischalten, entfernen, eigenes Passwort ----------
+async function team(inhalt) {
+  const liste = await td.trainerListe();
+  inhalt.innerHTML = `
+    <section class="karte">
+      <h2>Trainerteam</h2>
+      <div class="liste">${liste.map((t) => `
+        <div class="kind-verw"><span class="name">${esc(t.email)}${t.ich ? ' <span class="klein">(du)</span>' : ''}</span>
+          ${t.ich ? '' : `<button class="link rot" data-raus="${esc(t.email)}">Entfernen</button>`}</div>`).join('')}</div>
+    </section>
+    <section class="karte">
+      <h2>Trainer freischalten</h2>
+      <p class="klein">Zuerst in Supabase anlegen: <strong>Authentication → Users → Add user → Create new user</strong> (E-Mail + Startpasswort, Haken bei „Auto Confirm User“). Dann hier die gleiche E-Mail eintragen.</p>
+      <form id="frei" class="inline-form"><input id="frei-mail" type="email" placeholder="trainer@svsoltau.de" aria-label="E-Mail des Trainers" required><button class="knopf">Freischalten</button></form>
+    </section>
+    ${demo ? '' : `<section class="karte">
+      <h2>Mein Passwort ändern</h2>
+      <form id="pw-neu">
+        <label>Neues Passwort<input type="password" id="pwn1" autocomplete="new-password" minlength="10" required></label>
+        <label>Wiederholen<input type="password" id="pwn2" autocomplete="new-password" minlength="10" required></label>
+        <p class="fehler" id="pw-fehler"></p>
+        <button class="knopf zweit">Passwort ändern</button>
+      </form>
+    </section>`}`;
+  $('#frei').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const email = $('#frei-mail').value.trim();
+    const r = await td.trainerFreischalten(email);
+    if (r === 'ok') await meldung(`${email} ist jetzt Trainer. Schick ihr/ihm die App-Adresse, die E-Mail und das Startpasswort – und bitte darum, unter „Team“ ein eigenes Passwort festzulegen.`);
+    else if (r === 'schon') await meldung(`${email} ist bereits Trainer.`);
+    else await meldung(`Zu ${email} gibt es noch kein Konto. Bitte zuerst in Supabase unter Authentication → Users → Add user anlegen (Schreibweise genau gleich).`);
+    render();
+  });
+  inhalt.querySelectorAll('[data-raus]').forEach((b) => b.addEventListener('click', async () => {
+    if (!(await frage(`${b.dataset.raus} aus dem Trainerteam entfernen? Danach ist kein Zugriff auf die Kinderdaten mehr möglich.`, 'Entfernen', true))) return;
+    const r = await td.trainerEntfernen(b.dataset.raus);
+    if (r === 'letzter') await meldung('Der letzte Trainer kann nicht entfernt werden.');
+    render();
+  }));
+  $('#pw-neu')?.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const a = $('#pwn1').value;
+    if (a.length < 10) return ($('#pw-fehler').textContent = 'Bitte mindestens 10 Zeichen.');
+    if (a !== $('#pwn2').value) return ($('#pw-fehler').textContent = 'Die beiden Passwörter sind nicht gleich.');
+    try {
+      await passwortSetzen(a);
+      await meldung('Dein neues Passwort ist gespeichert.');
+      render();
+    } catch (e) {
+      $('#pw-fehler').textContent = e.message;
+    }
   });
 }

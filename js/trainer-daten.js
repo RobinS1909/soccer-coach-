@@ -15,6 +15,9 @@ const supabase = {
   kindAnlegen: (name) => db.rpc('trainer_kind_anlegen', { p_name: name }),
   codeNeu: (id) => db.rpc('trainer_code_neu', { p_kind: id }),
   kindLoeschen: (id) => db.loeschen(`kind?id=eq.${id}`),
+  trainerListe: () => db.rpc('trainer_liste', {}),
+  trainerFreischalten: (email) => db.rpc('trainer_freischalten', { p_email: email }),
+  trainerEntfernen: (email) => db.rpc('trainer_entfernen', { p_email: email }),
 };
 
 export const daten = demo ? demoTrainer : supabase;

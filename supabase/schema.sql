@@ -209,3 +209,46 @@ grant execute on function public.neuer_code() to authenticated;
 --   insert into public.trainer (user_id)
 --   select id from auth.users where email = 'trainer@example.de';
 -- =====================================================================
+
+-- =====================================================================
+-- Trainer-Team verwalten (aus der App, Reiter „Team“)
+-- =====================================================================
+create or replace function public.trainer_liste() returns table (email text, ich boolean)
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.ist_trainer() then raise exception 'Nur für Trainer' using errcode = '42501'; end if;
+  return query select u.email::text, (u.id = auth.uid()) from public.trainer t join auth.users u on u.id = t.user_id order by u.email;
+end $$;
+
+-- Ergebnis: 'ok', 'schon' (war schon Trainer) oder 'unbekannt' (Nutzer erst in Supabase anlegen)
+create or replace function public.trainer_freischalten(p_email text) returns text
+language plpgsql security definer set search_path = public as $$
+declare uid uuid;
+begin
+  if not public.ist_trainer() then raise exception 'Nur für Trainer' using errcode = '42501'; end if;
+  select id into uid from auth.users where lower(email) = lower(btrim(p_email));
+  if uid is null then return 'unbekannt'; end if;
+  insert into public.trainer (user_id) values (uid) on conflict do nothing;
+  if not found then return 'schon'; end if;
+  return 'ok';
+end $$;
+
+-- Ergebnis: 'ok', 'letzter' (der letzte Trainer kann nicht entfernt werden) oder 'unbekannt'
+create or replace function public.trainer_entfernen(p_email text) returns text
+language plpgsql security definer set search_path = public as $$
+declare uid uuid;
+begin
+  if not public.ist_trainer() then raise exception 'Nur für Trainer' using errcode = '42501'; end if;
+  select u.id into uid from auth.users u join public.trainer t on t.user_id = u.id where lower(u.email) = lower(btrim(p_email));
+  if uid is null then return 'unbekannt'; end if;
+  if (select count(*) from public.trainer) <= 1 then return 'letzter'; end if;
+  delete from public.trainer where user_id = uid;
+  return 'ok';
+end $$;
+
+revoke execute on function public.trainer_liste() from public, anon;
+revoke execute on function public.trainer_freischalten(text) from public, anon;
+revoke execute on function public.trainer_entfernen(text) from public, anon;
+grant execute on function public.trainer_liste() to authenticated;
+grant execute on function public.trainer_freischalten(text) to authenticated;
+grant execute on function public.trainer_entfernen(text) to authenticated;
