@@ -189,7 +189,7 @@ async function zeigeUebung(u) {
     </section>
     ${u.tipp ? `<div class="tipp"><strong>💡 Profi-Tipp:</strong> ${esc(u.tipp)}</div>` : ''}
     ${u.bild ? `<img class="bild" src="${esc(u.bild)}" alt="Skizze zur Übung" loading="lazy">` : ''}
-    ${u.video ? `<a class="knopf zweit" href="${esc(u.video)}" target="_blank" rel="noopener noreferrer">▶ Video ansehen</a>` : ''}
+    ${videoListe(u)}
     <div class="aktion">
       ${u.quiz ? `<a class="knopf" href="#/quiz/${esc(u.id)}">${fertig ? 'Quiz nochmal spielen' : 'Quiz starten 🧠'}</a>` : `<button class="knopf zweit" id="timer">⏱ Timer starten (${u.dauer} Min)</button>`}
       ${!darfAbhaken ? `<p class="klein mitte">Zum Abhaken erst <a href="#/">deinen Code eingeben</a>.</p>`
@@ -204,6 +204,17 @@ async function zeigeUebung(u) {
     zeigeUebung(u);
   });
   $('#timer')?.addEventListener('click', (ev) => starteTimer(ev.currentTarget, u.dauer));
+}
+
+// Videos: Liste "videos" [{titel, url}] oder einzelner Link "video"
+function videoListe(u) {
+  const videos = [...(u.videos || []), ...(u.video ? [{ titel: 'Video ansehen', url: u.video }] : [])].filter((v) => /^https:\/\//.test(v.url));
+  if (!videos.length) return '';
+  return `<section class="karte videos">
+      <h2>Video zum Nachmachen</h2>
+      ${videos.map((v) => `<a class="video-link" href="${esc(v.url)}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▶</span><span>${esc(v.titel)}</span></a>`).join('')}
+      <p class="klein">Öffnet YouTube. Am besten zusammen mit Mama oder Papa ansehen.</p>
+    </section>`;
 }
 
 let timerId;

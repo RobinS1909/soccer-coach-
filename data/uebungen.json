@@ -215,7 +215,13 @@
         "Mach 3 Runden und versuch, deinen Rekord zu knacken."
       ],
       "tipp": "Standbein neben den Ball, Fußspitze hoch, Knöchel fest. Profis schaffen es auch direkt – ohne zu stoppen!",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Passübungen gegen die Wand (SV Blau-Weiss Hohen Neuendorf)",
+          "url": "https://www.youtube.com/watch?v=zRwhVxcoM6M"
+        }
+      ]
     },
     {
       "id": "annahme-tor",
@@ -239,7 +245,13 @@
         "20 Annahmen. Wie viele gehen durchs Tor?"
       ],
       "tipp": "Schau schon vorher, wohin du willst. Nimm den Ball mit dem Fuß an, der weiter weg von der Wand ist.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Ballan- und -mitnahme trainieren – komplett alleine",
+          "url": "https://www.youtube.com/watch?v=mi6ja4iFHCk"
+        }
+      ]
     },
     {
       "id": "dreieck-wand",
@@ -393,6 +405,12 @@
           "richtig": 0,
           "erklaerung": "Super! C steht frei. D wird gedeckt – ein Pass zu D würde wahrscheinlich abgefangen."
         }
+      ],
+      "videos": [
+        {
+          "titel": "Spiel über den dritten Mann – Spielform",
+          "url": "https://www.youtube.com/watch?v=zJ7UL9GtqXI"
+        }
       ]
     },
     {
@@ -416,7 +434,17 @@
         "Profi-Stufe: Schau zweimal über die Schulter, bevor du losdribbelst."
       ],
       "tipp": "Beim Schulterblick nur den Kopf drehen – der Ball bleibt dicht an deinem Fuß.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Der Iniesta-Drill: Schulterblick-Training",
+          "url": "https://www.youtube.com/watch?v=jomf2PdoxEk"
+        },
+        {
+          "titel": "Schulterblick-Training mit Farben",
+          "url": "https://www.youtube.com/watch?v=hzez_rmldRQ"
+        }
+      ]
     },
     {
       "id": "kopf-freier-raum",
@@ -615,7 +643,13 @@
         "3 Runden à 1 Minute, dazwischen 1 Minute Pause."
       ],
       "tipp": "Nicht erst überlegen – der erste Schritt muss sofort kommen! Allein? Stell dir einen Timer und wechsle alle 10 Sekunden.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Reaktionstraining mit Farbmarkierungen (Kurzvideo)",
+          "url": "https://www.youtube.com/shorts/ikz8exiG9mI"
+        }
+      ]
     },
     {
       "id": "kopf-konter",
@@ -761,7 +795,13 @@
         "5 Versuche. Was ist dein Rekord?"
       ],
       "tipp": "Kleine Trippelschritte, damit du immer gut zum Ball stehst. Weiche Pässe sind leichter als harte.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Passen ganz alleine effektiv trainieren",
+          "url": "https://www.youtube.com/watch?v=VddsvvPcL40"
+        }
+      ]
     },
     {
       "id": "dreieck-partner",
@@ -1015,7 +1055,13 @@
         "10 Duelle, dann tauscht ihr. Wer verteidigt öfter erfolgreich?"
       ],
       "tipp": "Geduld! Wer zu früh reinspringt, wird ausgespielt. Augen auf den Ball, nicht auf die Füße des Gegners.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "So lernen Kinder das 1 gegen 1 in der Abwehr (1x1SPORT, Kurzvideo)",
+          "url": "https://www.youtube.com/shorts/eV7AwRULTgk"
+        }
+      ]
     },
     {
       "id": "kopf-abwehr",
@@ -1201,7 +1247,13 @@
         "3 Runden à 1 Minute. Wie viele Annahmen klappen ohne Wegspringen?"
       ],
       "tipp": "Den Fuß beim Annehmen etwas zurückziehen – wie beim Fangen eines rohen Eis.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Ballannahme & Ballmitnahme – Top 3 Übungen",
+          "url": "https://www.youtube.com/watch?v=13hIPkWR1oU"
+        }
+      ]
     },
     {
       "id": "kopf-passen",
@@ -1322,7 +1374,13 @@
         "3 Runden. Schaffst du 15 Punkte?"
       ],
       "tipp": "Der Fuß zeigt nach dem Pass genau auf das Ziel. Das Standbein steht neben dem Ball.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "9 Passübungen nur mit Ball und Wand (Englisch)",
+          "url": "https://www.youtube.com/watch?v=WkA7mMZXq00"
+        }
+      ]
     },
     {
       "id": "dreieck-zu-dritt",
@@ -1346,7 +1404,13 @@
         "Danach tauscht ihr die Rollen. 15 Durchgänge."
       ],
       "tipp": "Der Dritte muss loslaufen, bevor der Ball kommt. Ruft euch zu: „Klatsch!“ oder „Lauf!“",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "So sieht’s im Team aus: Passübung über den Dritten",
+          "url": "https://www.youtube.com/watch?v=WMJ1Dquh0nM"
+        }
+      ]
     },
     {
       "id": "kopf-dritter-3",
@@ -1497,7 +1561,13 @@
         "10 Durchgänge, abwechselnd nach links und rechts."
       ],
       "tipp": "Das „Kurz“ lockt den Gegner. Das „Lang“ muss explosiv sein – mit Tempowechsel bist du frei.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Passen und Freilaufen",
+          "url": "https://www.youtube.com/watch?v=EuAt_x_fMN0"
+        }
+      ]
     },
     {
       "id": "kopf-raum-3",
@@ -1623,7 +1693,13 @@
         "4 Runden, dann in die andere Richtung."
       ],
       "tipp": "Immer schön tief bleiben, Knie gebeugt. So stehst du auch im Spiel vor dem Gegner.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Mehr Fußarbeit: Koordinationsleiter für Kinder",
+          "url": "https://www.youtube.com/watch?v=UjySNsxRPIQ"
+        }
+      ]
     },
     {
       "id": "ball-erobern",
@@ -1647,7 +1723,13 @@
         "6 Runden, dann tauscht ihr."
       ],
       "tipp": "Warte, bis der Ball weit vom Fuß des Gegners weg ist – dann zuschlagen!",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Hier punkten nur Verteidiger! (1x1SPORT, Kurzvideo)",
+          "url": "https://www.youtube.com/shorts/vdv3uxV0bVA"
+        }
+      ]
     },
     {
       "id": "kopf-abwehr-2",
@@ -1753,7 +1835,17 @@
         "Schreib deinen Rekord auf und versuch ihn jede Woche zu knacken!"
       ],
       "tipp": "Fußspitze leicht nach oben ziehen, Knöchel fest. Der Ball soll nicht höher als bis zum Bauch fliegen.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Ball jonglieren für Anfänger – Schritt für Schritt",
+          "url": "https://www.youtube.com/watch?v=9vPeibubtUU"
+        },
+        {
+          "titel": "Jonglieren leicht gemacht – Tricks für Anfänger",
+          "url": "https://www.youtube.com/watch?v=UJiUmNlsnqk"
+        }
+      ]
     },
     {
       "id": "ballkontrolle-flur",
@@ -1775,7 +1867,17 @@
         "3 Runden. Wie schnell wirst du ohne dass der Ball wegrollt?"
       ],
       "tipp": "Klein und schnell – nicht fest! Erst langsam und sauber, dann immer schneller.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Technik-Training zuhause – 4 Übungen für mehr Ballgefühl",
+          "url": "https://www.youtube.com/watch?v=HEr8yv5WBoU"
+        },
+        {
+          "titel": "Ballkontrolle speziell für Kinder – Top 8 Übungen",
+          "url": "https://www.youtube.com/watch?v=NqYiqmCYvnA"
+        }
+      ]
     },
     {
       "id": "dribbel-slalom",
@@ -1798,7 +1900,13 @@
         "Stopp die Zeit! 2 Durchgänge je Variante."
       ],
       "tipp": "Ganz viele kleine Kontakte – der Ball bleibt immer nah am Fuß. Zwischendurch kurz hochschauen.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "5 Dribbling-Übungen für zuhause",
+          "url": "https://www.youtube.com/watch?v=aBfFiOmfMks"
+        }
+      ]
     },
     {
       "id": "finte-uebersteiger",
@@ -1821,7 +1929,17 @@
         "10 Mal pro Seite – erst langsam, dann schneller."
       ],
       "tipp": "Der Übersteiger soll den Gegner täuschen: Oberkörper mitbewegen! Danach explosiv in die andere Richtung.",
-      "video": null
+      "video": null,
+      "videos": [
+        {
+          "titel": "Erlernen des Übersteigers (Deutsches Fußball Internat)",
+          "url": "https://www.youtube.com/watch?v=ULD3AVsdpR8"
+        },
+        {
+          "titel": "5 Übersteiger – von einfach bis schwer",
+          "url": "https://www.youtube.com/watch?v=qHxLbAJThO8"
+        }
+      ]
     }
   ]
 }

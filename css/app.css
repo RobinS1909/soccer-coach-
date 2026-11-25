@@ -250,3 +250,8 @@ body.druckmodus > *:not(.code-liste-seite):not(.feier) { display: none !importan
   .dk-tipp { font-size: 8pt; color: #555; margin-top: auto; }
 }
 .art-filter { margin-top: -6px; }
+.videos { display: flex; flex-direction: column; gap: 8px; }
+.videos h2 { margin: 0 0 4px; }
+.video-link { display: flex; align-items: center; gap: 12px; padding: 12px 14px; min-height: 52px; border-radius: 12px; background: var(--flaeche-2); border: 1px solid var(--linie); color: var(--weiss); text-decoration: none; font-weight: 700; }
+.video-link span:first-child { width: 32px; height: 32px; border-radius: 50%; background: var(--gelb); color: var(--schwarz); display: grid; place-items: center; flex: none; font-size: .85rem; }
+.video-link:active { background: var(--linie); }
