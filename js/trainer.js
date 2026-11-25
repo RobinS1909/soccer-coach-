@@ -342,9 +342,12 @@ async function team(inhalt) {
   inhalt.innerHTML = `
     <section class="karte">
       <h2>Trainerteam</h2>
+      <p class="klein">${liste.length} Trainer · ${liste.filter((t) => t.aktiv !== false).length} aktiv</p>
       <div class="liste">${liste.map((t) => `
-        <div class="kind-verw"><span class="name">${esc(t.email)}${t.ich ? ' <span class="klein">(du)</span>' : ''}</span>
+        <div class="kind-verw trainer-zeile"><div class="trainer-info"><span class="name">${esc(t.email)}${t.ich ? ' <span class="klein">(du)</span>' : ''}</span>
+          <span class="status ${t.aktiv === false ? 'offen' : 'aktiv'}">${t.aktiv === false ? '✉️ Einladung noch nicht angenommen' : `✅ aktiv${t.zuletzt ? ` · zuletzt angemeldet ${new Date(t.zuletzt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })}` : ''}`}</span></div>
           ${t.ich ? '' : `<button class="link rot" data-raus="${esc(t.email)}">Entfernen</button>`}</div>`).join('')}</div>
+      <p class="klein">Neue Trainer: siehe Ablauf-Zettel (Konto in Supabase anlegen, dann unten freischalten) – oder Claude die E-Mail schicken.</p>
     </section>
     <section class="karte">
       <h2>Trainer freischalten</h2>
