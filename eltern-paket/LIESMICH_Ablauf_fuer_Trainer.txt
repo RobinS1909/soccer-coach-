@@ -14,7 +14,11 @@ Ablauf:
      -> Das ist der Nachweis. Original aufbewahren, im unteren Feld Datum + Kürzel eintragen.
   3. Erst dann das Kind in der App anlegen (Trainer -> Kinder). Die App fragt dabei
      ausdrücklich, ob die Einwilligung vorliegt.
-  4. Code auf eine Code-Karte (3) schreiben und dem Kind geben, dazu die Anleitung (2).
+     Viele Kinder auf einmal: Trainer -> Kinder -> "Viele Kinder auf einmal anlegen",
+     Vornamen einfügen (einer pro Zeile) -> alle Codes erscheinen in einer Liste
+     -> "Als Code-Karten drucken" (8 Karten pro A4-Seite, Name + Code schon eingedruckt).
+  4. Code-Karte dem Kind geben, dazu die Anleitung (2).
+     (Die leeren Karten in 3_Code-Karten_zum_Ausschneiden.pdf sind nur für Nachzügler zum Handausfüllen.)
   5. Widerruf durch Eltern: Kind in der App löschen -> alle Daten sind weg.
 
 Vor dem Verschicken bitte einmal vom Vereinsvorstand absegnen lassen

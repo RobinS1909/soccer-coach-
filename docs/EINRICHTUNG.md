@@ -30,6 +30,8 @@ der Fortschritt bleibt nur auf ihrem Gerät.
 
 ## Teil B: Supabase einrichten (Etappe 2: Codes für Kinder + Trainer-Übersicht)
 
+> **Aktuelle, ausführliche Anleitung: [SUPABASE_Schritt_fuer_Schritt.md](SUPABASE_Schritt_fuer_Schritt.md)**
+
 ### 1. Konto und Projekt
 1. Gehe auf `supabase.com` → **Start your project** → mit GitHub anmelden.
 2. **New project**:
