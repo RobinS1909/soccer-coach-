@@ -213,11 +213,16 @@ grant execute on function public.neuer_code() to authenticated;
 -- =====================================================================
 -- Trainer-Team verwalten (aus der App, Reiter „Team“)
 -- =====================================================================
-create or replace function public.trainer_liste() returns table (email text, ich boolean)
+drop function if exists public.trainer_liste();
+create or replace function public.trainer_liste()
+returns table (email text, ich boolean, aktiv boolean, zuletzt timestamptz)
 language plpgsql security definer set search_path = public as $$
 begin
   if not public.ist_trainer() then raise exception 'Nur für Trainer' using errcode = '42501'; end if;
-  return query select u.email::text, (u.id = auth.uid()) from public.trainer t join auth.users u on u.id = t.user_id order by u.email;
+  return query
+    select u.email::text, (u.id = auth.uid()), (u.email_confirmed_at is not null and u.last_sign_in_at is not null), u.last_sign_in_at
+    from public.trainer t join auth.users u on u.id = t.user_id
+    order by u.email;
 end $$;
 
 -- Ergebnis: 'ok', 'schon' (war schon Trainer) oder 'unbekannt' (Nutzer erst in Supabase anlegen)

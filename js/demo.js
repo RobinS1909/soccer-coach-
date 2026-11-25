@@ -134,7 +134,7 @@ export const demoTrainer = {
     k.code = neuerCode(db);
     return k.code;
   }),
-  trainerListe: mitDb((db) => (db.trainer || [{ email: 'demo@svsoltau.de', ich: true }])),
+  trainerListe: mitDb((db) => (db.trainer || [{ email: 'demo@svsoltau.de', ich: true }]).map((t) => ({ aktiv: t.ich, zuletzt: t.ich ? new Date().toISOString() : null, ...t }))),
   trainerFreischalten: mitDb((db, email) => {
     db.trainer = db.trainer || [{ email: 'demo@svsoltau.de', ich: true }];
     if (db.trainer.some((t) => t.email === email.toLowerCase())) return 'schon';
