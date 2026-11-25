@@ -1,6 +1,6 @@
 # SV Soltau – Soccer Coach
 
-Heimtrainings-App (PWA) für die U10-2 des SV Soltau von 1912 e.V.
+Heimtrainings-App (PWA) für die U10 des SV Soltau von 1912 e.V.
 
 - **Kinder** sehen ihre Einheiten der Woche, führen sie durch, haken ab und sammeln Abzeichen.
 - **Trainer** legen Kinder an (nur Vorname + Zugangscode), planen die Woche, tragen die
