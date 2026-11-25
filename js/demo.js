@@ -134,6 +134,19 @@ export const demoTrainer = {
     k.code = neuerCode(db);
     return k.code;
   }),
+  trainerListe: mitDb((db) => (db.trainer || [{ email: 'demo@svsoltau.de', ich: true }])),
+  trainerFreischalten: mitDb((db, email) => {
+    db.trainer = db.trainer || [{ email: 'demo@svsoltau.de', ich: true }];
+    if (db.trainer.some((t) => t.email === email.toLowerCase())) return 'schon';
+    db.trainer.push({ email: email.toLowerCase(), ich: false });
+    return 'ok';
+  }),
+  trainerEntfernen: mitDb((db, email) => {
+    db.trainer = db.trainer || [{ email: 'demo@svsoltau.de', ich: true }];
+    if (db.trainer.length <= 1) return 'letzter';
+    db.trainer = db.trainer.filter((t) => t.email !== email);
+    return 'ok';
+  }),
   kindLoeschen: mitDb((db, kid) => {
     db.kinder = db.kinder.filter((k) => k.id !== kid);
     db.erledigung = db.erledigung.filter((e) => e.kind_id !== kid);

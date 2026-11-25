@@ -1,0 +1,44 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><link rel="stylesheet" href="../eltern-paket/vorlagen/stil.css"><title>Trainer einladen</title>
+<style>
+.schritt { display: flex; gap: 10px; margin: 7px 0; align-items: flex-start; }
+.schritt .n { width: 22px; height: 22px; border-radius: 50%; background: #FFD500; font-weight: 800; display: grid; place-items: center; flex: none; font-size: 9.5pt; }
+.schritt .wo { font-size: 8.5pt; color: #555; }
+code { background: #f2f2f2; padding: 1px 5px; border-radius: 4px; font-size: 9.5pt; }
+.zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.zwei .box { margin: 0; }
+h2 { margin-top: 12px; }
+</style></head><body>
+<div class="kopf"><img src="../eltern-paket/vorlagen/logo.png" alt=""><div><div class="v">SV Soltau von 1912 e.V. · U10 · nur für das Trainerteam</div><div class="t">Soccer Coach – Ablauf: Trainer einladen</div></div></div>
+
+<div class="box gelb"><strong>App:</strong> training.svsoltau.de &nbsp;·&nbsp; <strong>Datenbank:</strong> supabase.com/dashboard → Projekt <code>soccer-coach</code> &nbsp;·&nbsp; Dauer: ca. 5 Minuten</div>
+
+<h2>A · Neuen Trainer hinzufügen</h2>
+<div class="schritt"><span class="n">1</span><div><strong>Konto anlegen</strong> – in Supabase: <strong>Authentication → Users → Add user → Create new user</strong><br>
+E-Mail des Trainers + Startpasswort (mind. 10 Zeichen), Haken bei <strong>„Auto Confirm User“</strong> → <strong>Create user</strong><br>
+<span class="wo">am besten am Computer; nur Robin hat den Supabase-Zugang</span></div></div>
+<div class="schritt"><span class="n">2</span><div><strong>Freischalten</strong> – in der App: <strong>Trainer → anmelden → Reiter „Team“</strong><br>
+gleiche E-Mail eintragen → <strong>Freischalten</strong> (Meldung „… ist jetzt Trainer“)</div></div>
+<div class="schritt"><span class="n">3</span><div><strong>Zugang weitergeben</strong> – persönlich oder per Nachricht: App-Adresse <code>training.svsoltau.de</code>, E-Mail und Startpasswort<br>
+<span class="wo">Tipp: Passwort getrennt von E-Mail/Adresse schicken oder mündlich sagen</span></div></div>
+<div class="schritt"><span class="n">4</span><div><strong>Neuer Trainer</strong>: App öffnen → <strong>Trainer</strong> → anmelden → <strong>Team → „Mein Passwort ändern“</strong> → eigenes Passwort festlegen ✓</div></div>
+
+<div class="zwei">
+<div class="box"><h2 style="margin-top:0">B · Trainer entfernen</h2>
+App → <strong>Trainer → Team</strong> → bei der E-Mail <strong>„Entfernen“</strong>. Danach kein Zugriff mehr auf Kinderdaten.<br>
+<span class="klein">Optional zusätzlich in Supabase: Authentication → Users → Nutzer löschen.</span></div>
+<div class="box"><h2 style="margin-top:0">C · Passwort vergessen</h2>
+App → Trainer → E-Mail eintragen → <strong>„Passwort vergessen?“</strong> → Link in der Mail.<br>
+<span class="klein">Kommt keine Mail (Gratis-Tarif verschickt nur wenige Mails): in Supabase Nutzer löschen, neu anlegen (Schritt 1) und wieder freischalten (Schritt 2).</span></div>
+</div>
+
+<h2>D · Kinder hinzufügen</h2>
+<p>Nur wenn die <strong>unterschriebene Einwilligung</strong> vorliegt: App → <strong>Trainer → Kinder</strong> → einzeln oder <strong>„Viele Kinder auf einmal anlegen“</strong> → <strong>„Als Code-Karten drucken“</strong>. Codes werden nur einmal angezeigt.</p>
+
+<h2>Gut zu wissen</h2>
+<ul>
+  <li>Trainer sehen alle Kinder und dürfen Kinder anlegen und löschen – nur vertrauenswürdige Personen freischalten.</li>
+  <li>Der letzte Trainer kann nicht entfernt werden (damit sich niemand aussperrt).</li>
+  <li>Supabase pausiert das Projekt nach <strong>7 Tagen ohne Nutzung</strong> (z. B. Sommerpause) → im Dashboard auf <strong>„Restore“</strong> tippen.</li>
+  <li>Den Supabase-Zugang (Konto von Robin) niemals weitergeben – Trainer brauchen nur ihren App-Zugang.</li>
+</ul>
+</body></html>
