@@ -1,5 +1,5 @@
 // SV Soltau – Soccer Coach: Kinder-Ansicht und Navigation
-import { online, demo } from './api.js';
+import { online, demo, sitzungAusLink } from './api.js';
 import { demoZuruecksetzen, DEMO_CODES } from './demo.js';
 import * as kind from './kind.js';
 import { ABZEICHEN, werteAus } from './abzeichen.js';
@@ -25,6 +25,14 @@ async function start() {
   }
   nachId = Object.fromEntries(daten.uebungen.map((u) => [u.id, u]));
   if (demo) document.querySelector('.kopf')?.insertAdjacentHTML('beforeend', '<a class="demo-chip" href="#/info">DEMO</a>');
+  // Rückkehr aus einer E-Mail (Einladung, Passwort vergessen)
+  if (/access_token=/.test(location.hash) && sitzungAusLink(location.hash)) {
+    history.replaceState(null, '', location.pathname + '#/trainer/passwort');
+  } else if (/error_description=/.test(location.hash)) {
+    const p = new URLSearchParams(location.hash.slice(1));
+    history.replaceState(null, '', location.pathname + '#/trainer');
+    meldung(`Der Link aus der E-Mail funktioniert nicht (mehr): ${p.get('error_description')}. Bitte unter „Passwort vergessen?“ einen neuen anfordern.`);
+  }
   window.addEventListener('hashchange', route);
   document.addEventListener('click', (ev) => {
     if (!ev.target.closest('[data-zurueck]')) return;
@@ -52,7 +60,7 @@ async function route() {
     if (teil === 'info') return zeigeInfo();
     if (teil === 'trainer' && online) {
       setzeNav('trainer');
-      return zeigeTrainer(app, daten);
+      return zeigeTrainer(app, daten, id);
     }
     return zeigeWoche();
   } catch (e) {

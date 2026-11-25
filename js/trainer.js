@@ -1,5 +1,5 @@
 // Trainer-Bereich: Übersicht, Anwesenheit, Wochenplan, Kinder verwalten.
-import { demo, trainerSitzung, trainerLogin, trainerLogout } from './api.js';
+import { demo, trainerSitzung, trainerLogin, trainerLogout, passwortVergessen, passwortSetzen } from './api.js';
 import { daten as td } from './trainer-daten.js';
 import { wocheVon, plusTage, isoDatum, ausIso, wochenText, berechneWoche } from './regeln.js';
 import { esc, $, frage, meldung } from './util.js';
@@ -10,11 +10,39 @@ let tab = 'uebersicht';
 let woche = wocheVon();
 let tag = isoDatum();
 
-export function zeigeTrainer(container, inhalt) {
+export function zeigeTrainer(container, inhalt, unterseite) {
   el = container;
   daten = inhalt;
   if (!trainerSitzung()) return zeigeLogin();
+  if (unterseite === 'passwort' && !demo) return zeigePasswortSetzen();
   render();
+}
+
+function zeigePasswortSetzen() {
+  el.innerHTML = `
+    <section class="karte">
+      <h1>Passwort festlegen</h1>
+      <p class="klein">Mindestens 10 Zeichen. Damit meldest du dich künftig im Trainer-Bereich an.</p>
+      <form id="pw-form">
+        <label>Neues Passwort<input type="password" id="pw1" autocomplete="new-password" minlength="10" required></label>
+        <label>Passwort wiederholen<input type="password" id="pw2" autocomplete="new-password" minlength="10" required></label>
+        <p class="fehler" id="fehler"></p>
+        <button class="knopf" type="submit">Passwort speichern</button>
+      </form>
+    </section>`;
+  $('#pw-form').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const a = $('#pw1').value;
+    if (a.length < 10) return ($('#fehler').textContent = 'Bitte mindestens 10 Zeichen.');
+    if (a !== $('#pw2').value) return ($('#fehler').textContent = 'Die beiden Passwörter sind nicht gleich.');
+    try {
+      await passwortSetzen(a);
+      await meldung('Passwort gespeichert. Du bist angemeldet.');
+      location.hash = '#/trainer';
+    } catch (e) {
+      $('#fehler').textContent = e.status === 401 || e.status === 403 ? 'Der Link ist abgelaufen. Bitte „Passwort vergessen?“ erneut nutzen.' : e.message;
+    }
+  });
 }
 
 function zeigeLogin(meldung = '') {
@@ -29,7 +57,18 @@ function zeigeLogin(meldung = '') {
         <p class="fehler" id="fehler">${esc(meldung)}</p>
         <button class="knopf" type="submit">Anmelden</button>
       </form>
+      ${demo ? '' : '<button class="link" id="vergessen">Passwort vergessen?</button>'}
     </section>`;
+  $('#vergessen')?.addEventListener('click', async () => {
+    const email = $('#email').value.trim();
+    if (!email) return ($('#fehler').textContent = 'Bitte oben zuerst deine E-Mail eintragen.');
+    try {
+      await passwortVergessen(email);
+      meldung(`Falls ${email} als Trainer eingetragen ist, kommt gleich eine E-Mail mit einem Link zum Festlegen des Passworts. Bitte auch im Spam-Ordner schauen.`);
+    } catch (e) {
+      $('#fehler').textContent = e.status === 429 ? 'Zu viele Versuche – bitte in einer Stunde erneut probieren.' : e.message;
+    }
+  });
   $('#login').addEventListener('submit', async (ev) => {
     ev.preventDefault();
     try {

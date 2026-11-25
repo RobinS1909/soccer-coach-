@@ -56,6 +56,23 @@ export async function trainerLogin(email, passwort) {
   speichereSitzung(s);
 }
 
+// Link aus E-Mail (Einladung / Passwort vergessen): Sitzung aus der Adresse übernehmen
+export function sitzungAusLink(hash) {
+  const p = new URLSearchParams(hash.replace(/^#/, ''));
+  if (!p.get('access_token')) return false;
+  speichereSitzung({ access_token: p.get('access_token'), refresh_token: p.get('refresh_token'), expires_in: Number(p.get('expires_in')) || 3600 });
+  return true;
+}
+
+export async function passwortVergessen(email) {
+  const ziel = location.origin + location.pathname;
+  await anfrage(`/auth/v1/recover?redirect_to=${encodeURIComponent(ziel)}`, { method: 'POST', body: { email } });
+}
+
+export async function passwortSetzen(passwort) {
+  await anfrage('/auth/v1/user', { method: 'PUT', body: { password: passwort }, token: await token() });
+}
+
 export function trainerLogout() {
   const s = trainerSitzung();
   schreiben(SITZUNG, null);
