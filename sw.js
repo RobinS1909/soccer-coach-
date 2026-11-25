@@ -1,6 +1,6 @@
 // Service Worker: macht die App offline nutzbar.
 // Bei jeder Änderung an Dateien VERSION erhöhen, damit Handys die neue Version laden.
-const VERSION = 'sc-v10';
+const VERSION = 'sc-v11';
 const DATEIEN = [
   './', 'index.html', 'css/app.css', 'config.js', 'manifest.webmanifest',
   'js/app.js', 'js/api.js', 'js/kind.js', 'js/trainer.js', 'js/regeln.js', 'js/abzeichen.js', 'js/skizze.js', 'js/speicher.js', 'js/util.js', 'js/demo.js', 'js/trainer-daten.js',
@@ -20,9 +20,12 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET' || url.origin !== location.origin) return; // Datenbank-Anfragen nie cachen
-  // Erst Netz (damit neue Übungen sofort da sind), sonst Cache
+  // Erst Netz (damit neue Übungen sofort da sind), sonst Cache.
+  // cache: 'no-cache' fragt immer beim Server nach, ob es eine neue Version gibt –
+  // so mischt das Handy nie alte und neue App-Dateien.
+  const anfrage = e.request.mode === 'navigate' ? e.request : new Request(e.request, { cache: 'no-cache' });
   e.respondWith(
-    fetch(e.request)
+    fetch(anfrage)
       .then((res) => {
         if (res.ok) {
           const kopie = res.clone();

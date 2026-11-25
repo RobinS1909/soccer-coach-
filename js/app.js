@@ -40,7 +40,18 @@ async function start() {
     else location.hash = '#/';
   });
   route();
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  if ('serviceWorker' in navigator) {
+    // Kommt eine neue App-Version, einmal neu laden, damit alle Dateien zusammenpassen
+    const hatteVersion = Boolean(navigator.serviceWorker.controller);
+    let neuGeladen = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hatteVersion && !neuGeladen) {
+        neuGeladen = true;
+        location.reload();
+      }
+    });
+    navigator.serviceWorker.register('sw.js').then((r) => r.update()).catch(() => {});
+  }
 }
 
 function setzeNav(aktiv) {
