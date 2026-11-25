@@ -99,7 +99,7 @@ Alle Übungen stehen in `data/uebungen.json`. Neue Übung = einen Block kopieren
 |---|---|
 | `id` | eindeutiger Name, nur kleine Buchstaben, Zahlen, Bindestrich (z. B. `dribbel-slalom`) |
 | `titel` | Anzeigename |
-| `schwerpunkt` | `umschalten`, `passen`, `dritter`, `raum` oder `abwehr` |
+| `schwerpunkt` | `umschalten`, `passen`, `dritter`, `raum`, `abwehr` oder `technik` (Ballgefühl) |
 | `art` | `mitBall`, `ohneBall` oder `kopf` |
 | `dauer` | Minuten |
 | `material` | Liste, z. B. `["1 Ball", "1 Wand"]` |

@@ -10,8 +10,9 @@ export const ABZEICHEN = [
   { id: 'dritter', icon: '🔺', name: 'Dreiecks-Meister', text: '3× Spiel über den Dritten trainiert', pruef: (h) => (h.proSchwerpunkt.dritter || 0) >= 3 },
   { id: 'raum', icon: '👀', name: 'Raum-Entdecker', text: '3× Freie Räume trainiert', pruef: (h) => (h.proSchwerpunkt.raum || 0) >= 3 },
   { id: 'abwehr', icon: '🛡️', name: 'Abwehr-Mauer', text: '3× Abwehr trainiert', pruef: (h) => (h.proSchwerpunkt.abwehr || 0) >= 3 },
+  { id: 'technik', icon: '✨', name: 'Ballzauberer', text: '3× Ballgefühl trainiert', pruef: (h) => (h.proSchwerpunkt.technik || 0) >= 3 },
   { id: 'kopf', icon: '🧠', name: 'Kopf-Genie', text: 'Ein Quiz ohne Fehler gelöst', pruef: (h) => h.quizPerfekt },
-  { id: 'allrounder', icon: '⭐', name: 'Allrounder', text: 'Jeden Schwerpunkt mindestens 1× trainiert', pruef: (h) => Object.keys(h.proSchwerpunkt).length >= 5 },
+  { id: 'allrounder', icon: '⭐', name: 'Allrounder', text: 'Mindestens 5 verschiedene Schwerpunkte trainiert', pruef: (h) => Object.keys(h.proSchwerpunkt).length >= 5 },
 ];
 
 export function werteAus(historie, uebungenNachId, extra) {
