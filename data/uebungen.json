@@ -25,6 +25,11 @@
       "name": "Abwehr",
       "lang": "Stellungsspiel, Anlaufen, Zweikampf",
       "icon": "🛡️"
+    },
+    "technik": {
+      "name": "Ballgefühl",
+      "lang": "Ballkontrolle, Dribbling, Finten und Jonglieren",
+      "icon": "✨"
     }
   },
   "arten": {
@@ -1104,6 +1109,719 @@
           "erklaerung": "Super! Nur zwischen Gegner und Tor kannst du ihn aufhalten."
         }
       ]
+    },
+    {
+      "id": "ballverlust-duell",
+      "titel": "Ballverlust-Duell",
+      "schwerpunkt": "umschalten",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten oder Hof",
+      "material": [
+        "1 Ball",
+        "1 Partner",
+        "2 Markierungen für ein Mini-Tor"
+      ],
+      "ziel": "Nach Ballverlust sofort umschalten und vor dem Gegner am eigenen Tor sein.",
+      "schritte": [
+        "Baut hinter dir ein Mini-Tor aus zwei Schuhen. Das ist dein Tor.",
+        "Du dribbelst 8 Schritte vom Tor weg, dein Partner läuft locker neben dir.",
+        "Irgendwann nimmt dein Partner dir den Ball weg und dribbelt auf dein Tor zu.",
+        "Du drehst sofort um und sprintest zurück, um zwischen ihn und dein Tor zu kommen.",
+        "Schaffst du es, ihn zu stellen, bevor er durchs Tor dribbelt? Dann Punkt für dich!",
+        "10 Durchgänge, dann tauscht ihr."
+      ],
+      "tipp": "Lauf nicht hinter dem Ball her, sondern auf dem kürzesten Weg Richtung Tor-Mitte.",
+      "video": null
+    },
+    {
+      "id": "tennisball-reaktion",
+      "titel": "Tennisball-Fänger",
+      "schwerpunkt": "umschalten",
+      "art": "ohneBall",
+      "dauer": 8,
+      "ort": "Drinnen oder draußen",
+      "material": [
+        "1 Tennisball (oder kleiner Ball)",
+        "1 Helfer"
+      ],
+      "ziel": "Schnelle Reaktion – das Wichtigste beim Umschalten.",
+      "schritte": [
+        "Dein Helfer steht dir gegenüber, 3 Schritte entfernt, und hält den Tennisball auf Schulterhöhe.",
+        "Du stehst in Bereitschaft: Knie leicht gebeugt, auf den Fußballen.",
+        "Der Helfer lässt den Ball plötzlich fallen.",
+        "Du startest sofort und fängst ihn, bevor er zum zweiten Mal aufspringt.",
+        "Klappt es? Dann einen halben Schritt weiter weg.",
+        "15 Versuche. Profi-Stufe: Der Helfer hat zwei Bälle und lässt nur einen fallen."
+      ],
+      "tipp": "Augen auf die Hand des Helfers, nicht auf sein Gesicht. Wer lauert, ist schneller.",
+      "video": null
+    },
+    {
+      "id": "sprint-wende",
+      "titel": "Sprint-Wende-Sprint",
+      "schwerpunkt": "umschalten",
+      "art": "ohneBall",
+      "dauer": 8,
+      "ort": "Garten, Hof oder langer Flur",
+      "material": [
+        "3 Markierungen"
+      ],
+      "ziel": "Schnell abbremsen, drehen und in die andere Richtung starten.",
+      "schritte": [
+        "Leg drei Schuhe in eine Linie: Start, Mitte (4 Schritte), Ende (8 Schritte).",
+        "Sprint vom Start zum Ende-Schuh.",
+        "Bremse, dreh dich und sprinte zurück zur Mitte.",
+        "Dreh dich wieder und sprinte zum Ende.",
+        "Dann locker zurück zum Start gehen.",
+        "6 Durchgänge. Wechsle bei jeder Wende die Seite, über die du dich drehst."
+      ],
+      "tipp": "Beim Bremsen tief gehen – wie ein Skifahrer. Dann kommst du schneller wieder weg.",
+      "video": null
+    },
+    {
+      "id": "annahme-im-lauf",
+      "titel": "Annahme im Lauf",
+      "schwerpunkt": "passen",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Vor einer Wand",
+      "material": [
+        "1 Ball",
+        "1 Wand",
+        "2 Markierungen"
+      ],
+      "ziel": "Den Ball in der Bewegung annehmen und gleich mitnehmen.",
+      "schritte": [
+        "Leg zwei Schuhe 4 Schritte auseinander, beide 3 Schritte vor der Wand.",
+        "Starte am linken Schuh und pass gegen die Wand.",
+        "Beweg dich sofort seitlich Richtung rechter Schuh.",
+        "Nimm den Ball im Laufen mit der Innenseite an und nimm ihn mit Richtung Schuh.",
+        "Am Schuh angekommen: Pass gegen die Wand und zurück nach links.",
+        "3 Runden à 1 Minute. Wie viele Annahmen klappen ohne Wegspringen?"
+      ],
+      "tipp": "Den Fuß beim Annehmen etwas zurückziehen – wie beim Fangen eines rohen Eis.",
+      "video": null
+    },
+    {
+      "id": "kopf-passen",
+      "titel": "Welcher Pass ist richtig?",
+      "schwerpunkt": "passen",
+      "art": "kopf",
+      "dauer": 5,
+      "ort": "Überall",
+      "material": [
+        "Nur dein Kopf"
+      ],
+      "ziel": "Du weißt, wann du in den Fuß und wann in den Lauf passt.",
+      "schritte": [
+        "Schau dir jedes Bild genau an.",
+        "Tippe auf die richtige Antwort.",
+        "Lies die Erklärung."
+      ],
+      "tipp": "Gelb sind wir, Rot ist der Gegner. Wir spielen nach rechts.",
+      "quiz": [
+        {
+          "frage": "Mit welchem Teil des Fußes spielst du einen kurzen, genauen Pass?",
+          "antworten": [
+            "Mit der Innenseite",
+            "Mit der Fußspitze",
+            "Mit der Ferse"
+          ],
+          "richtig": 0,
+          "erklaerung": "Genau! Die Innenseite ist die größte Fläche am Fuß – damit wird der Pass am genauesten."
+        },
+        {
+          "frage": "B läuft schon los in den freien Raum. Wohin passt du?",
+          "skizze": {
+            "spieler": [
+              {
+                "x": 30,
+                "y": 38,
+                "team": "wir",
+                "ich": true
+              },
+              {
+                "x": 46,
+                "y": 18,
+                "team": "wir",
+                "label": "B"
+              },
+              {
+                "x": 46,
+                "y": 32,
+                "team": "gegner"
+              }
+            ],
+            "ball": {
+              "x": 33,
+              "y": 39
+            },
+            "pfeile": [
+              {
+                "von": [
+                  46,
+                  18
+                ],
+                "nach": [
+                  59,
+                  18
+                ],
+                "typ": "lauf"
+              }
+            ],
+            "zonen": [
+              {
+                "x": 61,
+                "y": 10,
+                "w": 14,
+                "h": 16,
+                "label": "2"
+              }
+            ]
+          },
+          "antworten": [
+            "Genau zu B – dahin, wo er jetzt steht",
+            "In Raum 2 – dahin, wo B hinläuft"
+          ],
+          "richtig": 1,
+          "erklaerung": "Richtig! Ein Pass in den Lauf kommt dort an, wo dein Mitspieler gleich ist. Sonst muss er stehen bleiben."
+        },
+        {
+          "frage": "Dein Mitspieler steht ganz nah. Wie spielst du den Pass?",
+          "antworten": [
+            "Weich und flach",
+            "So hart wie möglich",
+            "Hoch in die Luft"
+          ],
+          "richtig": 0,
+          "erklaerung": "Super! Kurze Pässe weich und flach – dann kann dein Mitspieler den Ball leicht annehmen."
+        }
+      ],
+      "video": null
+    },
+    {
+      "id": "pass-slalom-wand",
+      "titel": "Pass-Treffer-Serie",
+      "schwerpunkt": "passen",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Vor einer Wand",
+      "material": [
+        "1 Ball",
+        "1 Wand",
+        "Kreide oder Klebeband (fragen!)"
+      ],
+      "ziel": "Gezielt auf verschiedene Punkte passen.",
+      "schritte": [
+        "Markiere an der Wand drei Ziele nebeneinander: links, Mitte, rechts (Kreide oder Klebeband – vorher fragen).",
+        "Stell dich 4 Schritte vor die Mitte.",
+        "Pass nacheinander auf links, Mitte, rechts – erst mit rechts.",
+        "Jeder Treffer zählt einen Punkt.",
+        "Dann das Ganze mit links.",
+        "3 Runden. Schaffst du 15 Punkte?"
+      ],
+      "tipp": "Der Fuß zeigt nach dem Pass genau auf das Ziel. Das Standbein steht neben dem Ball.",
+      "video": null
+    },
+    {
+      "id": "dreieck-zu-dritt",
+      "titel": "Dreiecks-Spiel zu dritt",
+      "schwerpunkt": "dritter",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten oder Hof",
+      "material": [
+        "1 Ball",
+        "2 Mitspieler (Familie, Freunde)",
+        "3 Markierungen"
+      ],
+      "ziel": "Spiel über den Dritten wie im Training – mit Pass, Ablage und Laufweg.",
+      "schritte": [
+        "Legt ein Dreieck aus drei Schuhen, jede Seite 5 Schritte lang. Jeder stellt sich an einen Schuh.",
+        "A passt zu B.",
+        "B spielt direkt weiter zu C.",
+        "A läuft direkt nach seinem Pass in den freien Raum.",
+        "C spielt A im Lauf an.",
+        "Danach tauscht ihr die Rollen. 15 Durchgänge."
+      ],
+      "tipp": "Der Dritte muss loslaufen, bevor der Ball kommt. Ruft euch zu: „Klatsch!“ oder „Lauf!“",
+      "video": null
+    },
+    {
+      "id": "kopf-dritter-3",
+      "titel": "Der Dritte – Profi-Level",
+      "schwerpunkt": "dritter",
+      "art": "kopf",
+      "dauer": 5,
+      "ort": "Überall",
+      "material": [
+        "Nur dein Kopf"
+      ],
+      "ziel": "Du erkennst Laufwege für das Spiel über den Dritten.",
+      "schritte": [
+        "Schau dir jedes Bild genau an.",
+        "Tippe auf die richtige Antwort.",
+        "Lies die Erklärung."
+      ],
+      "tipp": "Gelb sind wir, Rot ist der Gegner. Wir spielen nach rechts.",
+      "quiz": [
+        {
+          "frage": "Du passt zu B, B lässt zu C prallen. Welcher Laufweg ist für dich am besten?",
+          "skizze": {
+            "spieler": [
+              {
+                "x": 26,
+                "y": 34,
+                "team": "wir",
+                "ich": true
+              },
+              {
+                "x": 42,
+                "y": 34,
+                "team": "wir",
+                "label": "B"
+              },
+              {
+                "x": 34,
+                "y": 20,
+                "team": "wir",
+                "label": "C"
+              },
+              {
+                "x": 48,
+                "y": 36,
+                "team": "gegner"
+              }
+            ],
+            "ball": {
+              "x": 29,
+              "y": 35
+            },
+            "pfeile": [
+              {
+                "von": [
+                  26,
+                  34
+                ],
+                "nach": [
+                  60,
+                  46
+                ],
+                "typ": "lauf",
+                "label": "1"
+              },
+              {
+                "von": [
+                  26,
+                  34
+                ],
+                "nach": [
+                  12,
+                  46
+                ],
+                "typ": "lauf",
+                "label": "2"
+              }
+            ]
+          },
+          "antworten": [
+            "Weg 1: nach vorne in den freien Raum",
+            "Weg 2: nach hinten"
+          ],
+          "richtig": 0,
+          "erklaerung": "Genau! Nach vorne in den freien Raum – dann kann C dich hinter dem Gegner anspielen."
+        },
+        {
+          "frage": "Was ist ein „Klatsch-Pass“?",
+          "antworten": [
+            "Ein direkter Pass zurück oder zur Seite, ohne Stoppen",
+            "Ein Pass mit der Hand",
+            "Ein sehr hoher Pass"
+          ],
+          "richtig": 0,
+          "erklaerung": "Richtig! Beim Klatschen wird der Ball direkt weitergespielt – das ist schnell und überrascht den Gegner."
+        },
+        {
+          "frage": "Warum ist das Spiel über den Dritten so gut?",
+          "antworten": [
+            "Weil der Gegner mit dem Blick beim Ball ist und den Dritten nicht sieht",
+            "Weil es länger dauert"
+          ],
+          "richtig": 0,
+          "erklaerung": "Super! Der Gegner schaut auf den Ball – der Dritte startet in seinem Rücken."
+        }
+      ],
+      "video": null
+    },
+    {
+      "id": "laufweg-dreieck",
+      "titel": "Laufwege ohne Ball",
+      "schwerpunkt": "dritter",
+      "art": "ohneBall",
+      "dauer": 8,
+      "ort": "Garten oder Hof",
+      "material": [
+        "4 Markierungen"
+      ],
+      "ziel": "Laufwege nach dem Pass automatisch machen.",
+      "schritte": [
+        "Leg vier Schuhe als Quadrat, jede Seite 5 Schritte.",
+        "Stell dich an Schuh 1. Tu so, als würdest du zu Schuh 2 passen (Pass-Bewegung ohne Ball).",
+        "Sofort nach dem „Pass“ sprintest du diagonal zu Schuh 3.",
+        "Dort drehst du dich, „passt“ zu Schuh 4 und sprintest diagonal zu Schuh 1.",
+        "Das ist ein Kreislauf: Pass, Sprint, Pass, Sprint.",
+        "4 Runden à 45 Sekunden."
+      ],
+      "tipp": "Mit jedem „Pass“ rufst du laut „Lauf!“ – so merkst du dir: Nach dem Pass immer los!",
+      "video": null
+    },
+    {
+      "id": "kurz-lang",
+      "titel": "Kurz – Lang: Freilaufen",
+      "schwerpunkt": "raum",
+      "art": "ohneBall",
+      "dauer": 8,
+      "ort": "Garten oder Hof",
+      "material": [
+        "1 Ball",
+        "1 Helfer"
+      ],
+      "ziel": "Sich vom Gegner lösen und im freien Raum den Ball fordern.",
+      "schritte": [
+        "Dein Helfer steht mit dem Ball 6 Schritte vor dir.",
+        "Mach zwei schnelle Schritte auf den Helfer zu (kurz).",
+        "Dann dreh ab und sprinte schräg in den freien Raum (lang).",
+        "Dein Helfer rollt dir den Ball in den Lauf.",
+        "Nimm den Ball an und gib ihn zurück.",
+        "10 Durchgänge, abwechselnd nach links und rechts."
+      ],
+      "tipp": "Das „Kurz“ lockt den Gegner. Das „Lang“ muss explosiv sein – mit Tempowechsel bist du frei.",
+      "video": null
+    },
+    {
+      "id": "kopf-raum-3",
+      "titel": "Breit und tief!",
+      "schwerpunkt": "raum",
+      "art": "kopf",
+      "dauer": 5,
+      "ort": "Überall",
+      "material": [
+        "Nur dein Kopf"
+      ],
+      "ziel": "Du verstehst, warum wir das Feld groß machen.",
+      "schritte": [
+        "Schau dir jedes Bild genau an.",
+        "Tippe auf die richtige Antwort.",
+        "Lies die Erklärung."
+      ],
+      "tipp": "Gelb sind wir, Rot ist der Gegner. Wir spielen nach rechts.",
+      "quiz": [
+        {
+          "frage": "Alle stehen eng beim Ball. Was ist das Problem?",
+          "skizze": {
+            "spieler": [
+              {
+                "x": 38,
+                "y": 28,
+                "team": "wir"
+              },
+              {
+                "x": 44,
+                "y": 37,
+                "team": "wir"
+              },
+              {
+                "x": 35,
+                "y": 38,
+                "team": "wir"
+              },
+              {
+                "x": 48,
+                "y": 26,
+                "team": "gegner"
+              },
+              {
+                "x": 51,
+                "y": 40,
+                "team": "gegner"
+              }
+            ],
+            "ball": {
+              "x": 41,
+              "y": 32
+            }
+          },
+          "antworten": [
+            "Keiner ist frei, der Gegner kann leicht verteidigen",
+            "Das ist super so"
+          ],
+          "richtig": 0,
+          "erklaerung": "Richtig! Wenn alle eng stehen, reichen wenige Gegner zum Verteidigen. Verteilt euch!"
+        },
+        {
+          "frage": "Wo sollte der Außenspieler stehen, wenn wir den Ball haben?",
+          "antworten": [
+            "Nah an der Seitenlinie – breit",
+            "In der Mitte beim Ball"
+          ],
+          "richtig": 0,
+          "erklaerung": "Genau! Breit an der Seitenlinie zieht er Gegner nach außen – innen entstehen Lücken."
+        },
+        {
+          "frage": "Dein Mitspieler hat den Ball. Ein Gegner steht zwischen euch. Was machst du?",
+          "antworten": [
+            "Ein paar Schritte zur Seite gehen, bis der Weg frei ist",
+            "Stehen bleiben"
+          ],
+          "richtig": 0,
+          "erklaerung": "Super! Raus aus dem Schatten des Gegners – dann ist der Passweg frei."
+        }
+      ],
+      "video": null
+    },
+    {
+      "id": "luecken-lauf",
+      "titel": "Lücken-Sprint",
+      "schwerpunkt": "raum",
+      "art": "ohneBall",
+      "dauer": 8,
+      "ort": "Garten oder Hof",
+      "material": [
+        "5 Markierungen (Gegner)",
+        "1 Helfer"
+      ],
+      "ziel": "Schnell die größte Lücke erkennen und hindurchsprinten.",
+      "schritte": [
+        "Dein Helfer legt 5 Schuhe kreuz und quer auf eine Fläche von 6 × 6 Schritten. Das sind die Gegner.",
+        "Du stehst 4 Schritte davor und schaust weg.",
+        "Der Helfer verschiebt zwei Schuhe und ruft „Jetzt!“.",
+        "Dreh dich um, finde die größte Lücke und sprinte hindurch.",
+        "Sag laut, zwischen welchen Schuhen du durchgelaufen bist.",
+        "10 Durchgänge."
+      ],
+      "tipp": "Erst schauen, dann laufen – aber schnell! Ein Blick muss reichen.",
+      "video": null
+    },
+    {
+      "id": "fussarbeit-quadrat",
+      "titel": "Fußarbeit-Quadrat",
+      "schwerpunkt": "abwehr",
+      "art": "ohneBall",
+      "dauer": 8,
+      "ort": "Garten, Hof oder Flur",
+      "material": [
+        "4 Markierungen"
+      ],
+      "ziel": "Schnelle Abwehr-Fußarbeit: seitlich, rückwärts, vorwärts.",
+      "schritte": [
+        "Leg vier Schuhe als Quadrat, jede Seite 3 Schritte.",
+        "Von Schuh 1 zu 2: seitlich laufen (Füße nicht überkreuzen).",
+        "Von Schuh 2 zu 3: rückwärts laufen.",
+        "Von Schuh 3 zu 4: seitlich zurück.",
+        "Von Schuh 4 zu 1: vorwärts sprinten.",
+        "4 Runden, dann in die andere Richtung."
+      ],
+      "tipp": "Immer schön tief bleiben, Knie gebeugt. So stehst du auch im Spiel vor dem Gegner.",
+      "video": null
+    },
+    {
+      "id": "ball-erobern",
+      "titel": "Ball-Eroberer",
+      "schwerpunkt": "abwehr",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten oder Hof",
+      "material": [
+        "1 Ball",
+        "1 Partner",
+        "4 Markierungen"
+      ],
+      "ziel": "Den Ball fair erobern, ohne reinzuspringen.",
+      "schritte": [
+        "Markiert ein Quadrat, 5 × 5 Schritte.",
+        "Dein Partner hat den Ball und versucht, ihn 30 Sekunden im Quadrat zu behalten.",
+        "Du versuchst, den Ball zu erobern oder aus dem Quadrat zu spielen.",
+        "Erst stellen, dann im richtigen Moment zustoßen – kein Schubsen, kein Grätschen.",
+        "Eroberst du den Ball, bekommst du einen Punkt.",
+        "6 Runden, dann tauscht ihr."
+      ],
+      "tipp": "Warte, bis der Ball weit vom Fuß des Gegners weg ist – dann zuschlagen!",
+      "video": null
+    },
+    {
+      "id": "kopf-abwehr-2",
+      "titel": "Ball und Gegner im Blick",
+      "schwerpunkt": "abwehr",
+      "art": "kopf",
+      "dauer": 5,
+      "ort": "Überall",
+      "material": [
+        "Nur dein Kopf"
+      ],
+      "ziel": "Du stehst richtig, wenn der Gegner den Ball noch nicht hat.",
+      "schritte": [
+        "Schau dir jedes Bild genau an.",
+        "Tippe auf die richtige Antwort.",
+        "Lies die Erklärung."
+      ],
+      "tipp": "Gelb sind wir, Rot ist der Gegner. Unser Tor ist immer links.",
+      "quiz": [
+        {
+          "frage": "Du deckst den Gegner C. Wo stehst du am besten?",
+          "skizze": {
+            "spieler": [
+              {
+                "x": 60,
+                "y": 30,
+                "team": "gegner"
+              },
+              {
+                "x": 36,
+                "y": 22,
+                "team": "gegner",
+                "label": "C"
+              }
+            ],
+            "ball": {
+              "x": 57,
+              "y": 31
+            },
+            "zonen": [
+              {
+                "x": 21,
+                "y": 20,
+                "w": 10,
+                "h": 10,
+                "label": "1"
+              },
+              {
+                "x": 43,
+                "y": 14,
+                "w": 10,
+                "h": 10,
+                "label": "2"
+              }
+            ]
+          },
+          "antworten": [
+            "Raum 1 – zwischen C und unserem Tor",
+            "Raum 2 – hinter C"
+          ],
+          "richtig": 0,
+          "erklaerung": "Genau! Zwischen Gegner und Tor – und so, dass du Ball und Gegner gleichzeitig siehst."
+        },
+        {
+          "frage": "Worauf schaust du in der Abwehr?",
+          "antworten": [
+            "Nur auf den Ball",
+            "Auf Ball und Gegner",
+            "Auf die Zuschauer"
+          ],
+          "richtig": 1,
+          "erklaerung": "Richtig! Wer nur auf den Ball schaut, verliert seinen Gegner. Immer beide im Blick behalten."
+        },
+        {
+          "frage": "Der Gegner bekommt gleich einen Pass. Was machst du?",
+          "antworten": [
+            "Nah an ihn heran, damit er sich nicht drehen kann",
+            "Weit weg stehen bleiben"
+          ],
+          "richtig": 0,
+          "erklaerung": "Super! Ganz nah dran – dann kann er sich mit dem Ball nicht zu unserem Tor drehen."
+        }
+      ],
+      "video": null
+    },
+    {
+      "id": "jonglier-rekord",
+      "titel": "Jonglier-Rekord",
+      "schwerpunkt": "technik",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten oder Hof",
+      "material": [
+        "1 Ball"
+      ],
+      "ziel": "Ballgefühl mit beiden Füßen.",
+      "schritte": [
+        "Halte den Ball mit den Händen, lass ihn fallen, kick ihn mit dem Spann einmal hoch und fang ihn.",
+        "Klappt das 10 Mal? Dann zweimal kicken, bevor du fängst.",
+        "Danach ohne Fangen: Ball darf einmal aufspringen zwischen den Kontakten.",
+        "Profi-Stufe: Ohne Aufspringen, abwechselnd rechts und links.",
+        "Zähl deine Kontakte am Stück.",
+        "Schreib deinen Rekord auf und versuch ihn jede Woche zu knacken!"
+      ],
+      "tipp": "Fußspitze leicht nach oben ziehen, Knöchel fest. Der Ball soll nicht höher als bis zum Bauch fliegen.",
+      "video": null
+    },
+    {
+      "id": "ballkontrolle-flur",
+      "titel": "Ballzauber im Flur",
+      "schwerpunkt": "technik",
+      "art": "mitBall",
+      "dauer": 8,
+      "ort": "Flur oder Zimmer (kleiner Platz reicht)",
+      "material": [
+        "1 Ball (ggf. weicher Ball für drinnen)"
+      ],
+      "ziel": "Viele Ballkontakte auf kleinstem Raum.",
+      "schritte": [
+        "Tick-Tack: Ball zwischen den Innenseiten hin und her tippen – 30 Sekunden.",
+        "Sohle-Ziehen: Ball mit der Sohle zu dir ziehen, abwechselnd rechts und links – 30 Sekunden.",
+        "Sohle-Rollen: Ball mit der Sohle seitlich vor dir hin und her rollen – 30 Sekunden.",
+        "Antippen: Sohle abwechselnd oben auf den Ball tippen, wie Treppensteigen – 30 Sekunden.",
+        "Kurze Pause.",
+        "3 Runden. Wie schnell wirst du ohne dass der Ball wegrollt?"
+      ],
+      "tipp": "Klein und schnell – nicht fest! Erst langsam und sauber, dann immer schneller.",
+      "video": null
+    },
+    {
+      "id": "dribbel-slalom",
+      "titel": "Dribbel-Slalom",
+      "schwerpunkt": "technik",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten oder Hof",
+      "material": [
+        "1 Ball",
+        "6 Markierungen"
+      ],
+      "ziel": "Enge Ballführung mit Innen- und Außenseite.",
+      "schritte": [
+        "Leg 6 Schuhe in eine Reihe, jeweils 1 großer Schritt Abstand.",
+        "Dribble im Slalom durch – nur mit rechts.",
+        "Zurück nur mit links.",
+        "Dann: nur mit der Außenseite.",
+        "Dann: Innenseite und Außenseite im Wechsel.",
+        "Stopp die Zeit! 2 Durchgänge je Variante."
+      ],
+      "tipp": "Ganz viele kleine Kontakte – der Ball bleibt immer nah am Fuß. Zwischendurch kurz hochschauen.",
+      "video": null
+    },
+    {
+      "id": "finte-uebersteiger",
+      "titel": "Finte: Der Übersteiger",
+      "schwerpunkt": "technik",
+      "art": "mitBall",
+      "dauer": 10,
+      "ort": "Garten oder Hof",
+      "material": [
+        "1 Ball",
+        "1 Markierung (Gegner)"
+      ],
+      "ziel": "Eine Finte lernen, um im 1 gegen 1 am Gegner vorbeizukommen.",
+      "schritte": [
+        "Erst ohne Ball: Steig mit dem rechten Fuß von innen nach außen über eine gedachte Linie. Dann mit links. 10 Mal jeder Fuß.",
+        "Jetzt mit Ball, langsam: Ball steht still, steig mit rechts von innen nach außen über den Ball.",
+        "Nimm danach den Ball mit der linken Außenseite nach links mit.",
+        "Leg einen Schuh als Gegner hin. Dribble auf ihn zu, Übersteiger rechts, dann links vorbei.",
+        "Und umgekehrt: Übersteiger links, rechts vorbei.",
+        "10 Mal pro Seite – erst langsam, dann schneller."
+      ],
+      "tipp": "Der Übersteiger soll den Gegner täuschen: Oberkörper mitbewegen! Danach explosiv in die andere Richtung.",
+      "video": null
     }
   ]
 }

@@ -346,15 +346,28 @@ function zeigeQuiz(u) {
 function zeigeAlle(filter) {
   setzeNav('alle');
   const set = new Set(woche ? erledigtDieseWoche() : []);
-  const liste = daten.uebungen.filter((u) => !filter || u.schwerpunkt === filter);
+  // Filter: "#/alle/<schwerpunkt>" oder "#/alle/<schwerpunkt>~<art>"; "alle" = kein Schwerpunkt
+  const [spRoh = '', artRoh = ''] = (filter || '').split('~');
+  const sp = daten.schwerpunkte[spRoh] ? spRoh : '';
+  const art = daten.arten[artRoh] ? artRoh : '';
+  const link = (s, a) => `#/alle/${s || 'alle'}${a ? `~${a}` : ''}`;
+  const reihenfolge = Object.keys(daten.schwerpunkte);
+  const liste = daten.uebungen
+    .filter((u) => (!sp || u.schwerpunkt === sp) && (!art || u.art === art))
+    .sort((x, y) => reihenfolge.indexOf(x.schwerpunkt) - reihenfolge.indexOf(y.schwerpunkt));
   app.innerHTML = `
     <h1>Alle Übungen</h1>
     <div class="filter">
-      <a href="#/alle" class="chip ${!filter ? 'gelb' : ''}">Alle</a>
-      ${Object.entries(daten.schwerpunkte).map(([k, s]) => `<a href="#/alle/${k}" class="chip ${filter === k ? 'gelb' : ''}">${s.icon} ${esc(s.name)}</a>`).join('')}
+      <a href="${link('', art)}" class="chip ${!sp ? 'gelb' : ''}">Alle</a>
+      ${Object.entries(daten.schwerpunkte).map(([k, x]) => `<a href="${link(k, art)}" class="chip ${sp === k ? 'gelb' : ''}">${x.icon} ${esc(x.name)}</a>`).join('')}
     </div>
-    ${filter ? `<p class="klein">${esc(daten.schwerpunkte[filter].lang)}</p>` : ''}
-    <div class="liste">${liste.map((u) => uebungsKarte(u, set.has(u.id))).join('')}</div>`;
+    <div class="filter art-filter">
+      <a href="${link(sp, '')}" class="chip ${!art ? 'gelb' : ''}">Jede Art</a>
+      ${Object.entries(daten.arten).map(([k, x]) => `<a href="${link(sp, k)}" class="chip ${art === k ? 'gelb' : ''}">${x.icon} ${esc(x.name)}</a>`).join('')}
+    </div>
+    ${sp ? `<p class="klein">${esc(daten.schwerpunkte[sp].lang)}</p>` : ''}
+    <p class="klein">${liste.length} ${liste.length === 1 ? 'Übung' : 'Übungen'}</p>
+    <div class="liste">${liste.map((u) => uebungsKarte(u, set.has(u.id))).join('') || '<p>Keine Übung mit dieser Auswahl.</p>'}</div>`;
 }
 
 // ---------------- Abzeichen ----------------

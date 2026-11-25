@@ -249,3 +249,4 @@ body.druckmodus > *:not(.code-liste-seite):not(.feier) { display: none !importan
   .dk-app { font-size: 9pt; }
   .dk-tipp { font-size: 8pt; color: #555; margin-top: auto; }
 }
+.art-filter { margin-top: -6px; }

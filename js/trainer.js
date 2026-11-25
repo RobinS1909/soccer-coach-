@@ -155,7 +155,7 @@ async function plan(inhalt) {
     ${wochenWahl()}
     ${!p.eigener ? `<div class="hinweis">Noch kein eigener Plan – die Kinder sehen den Standard-Plan.<br><button class="knopf zweit" id="standard">Standard-Plan übernehmen und anpassen</button></div>` : ''}
     <p class="klein"><strong>Pflicht</strong> = für alle Kinder. <strong>Extra</strong> = Vorschläge für Kinder, die beim Training gefehlt haben (je Fehltraining 2 Einheiten).</p>
-    <div class="liste">${daten.uebungen.map((u) => { const a = art[u.id] || ''; const sp = daten.schwerpunkte[u.schwerpunkt]; return `
+    <div class="liste">${[...daten.uebungen].sort((x, y) => Object.keys(daten.schwerpunkte).indexOf(x.schwerpunkt) - Object.keys(daten.schwerpunkte).indexOf(y.schwerpunkt)).map((u) => { const a = art[u.id] || ''; const sp = daten.schwerpunkte[u.schwerpunkt]; return `
       <div class="plan-zeile"><div><strong>${esc(u.titel)}</strong><span class="klein">${sp.icon} ${esc(sp.name)} · ${daten.arten[u.art].icon} · ${u.dauer} Min</span></div>
         <div class="segment" data-id="${esc(u.id)}">
           <button data-art="" class="${a === '' ? 'aktiv' : ''}">–</button>
