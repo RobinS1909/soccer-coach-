@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SV Soltau Teamzentrale</title>
+  <meta name="description" content="Trainer- und Vereins-App des SV Soltau von 1912 e.V. – Kader, Training, Spiele, Aufstellung und Mannschaftskasse.">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark light">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../icons/logo-klein.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/verein.css">
+</head>
+<body>
+  <a class="sprung" href="#inhalt">Zum Inhalt</a>
+
+  <aside class="seitenleiste" aria-label="Hauptnavigation">
+    <div class="marke-kopf">
+      <img src="../icons/logo-klein.png" alt="" width="36" height="36">
+      <div><strong>SV Soltau</strong><span>Teamzentrale</span></div>
+    </div>
+    <nav id="seitenleiste-links"></nav>
+    <p class="fuss">Struktur-Vorschau · Abschnitt 1</p>
+  </aside>
+
+  <div class="rahmen">
+    <header class="kopf">
+      <div class="marke-kopf nur-handy">
+        <img src="../icons/logo-klein.png" alt="" width="32" height="32">
+        <div><strong>SV Soltau</strong><span>Teamzentrale</span></div>
+      </div>
+      <div class="wahl">
+        <label><span>Mannschaft</span><select id="team-wahl"></select></label>
+        <label><span>Rolle (Vorschau)</span><select id="rollen-wahl"></select></label>
+      </div>
+    </header>
+    <main id="inhalt" tabindex="-1"></main>
+  </div>
+
+  <nav class="unten-nav" id="unten-nav" aria-label="Hauptmenü"></nav>
+  <noscript>Bitte JavaScript aktivieren.</noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

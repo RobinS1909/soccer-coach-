@@ -7,6 +7,10 @@ Heimtrainings-App (PWA) für die U10 des SV Soltau von 1912 e.V.
   Anwesenheit ein und sehen, wer sein Soll erfüllt hat.
 - **Regel:** Pflicht-Einheiten für alle + 2 Extra-Einheiten pro verpasstem Mannschaftstraining.
 
+**Neu (im Aufbau):** `verein/` – die *Teamzentrale*, eine Trainer- und Vereins-App in Schwarz-Weiß
+(Kader, Training, Spiele, Aufstellung, Abwesenheiten, Kasse). Erreichbar unter `/verein/`.
+Analyse und Bauplan: `docs/TEAMZENTRALE_STRUKTUR.md`.
+
 ## Aufbau
 
 | Pfad | Inhalt |
