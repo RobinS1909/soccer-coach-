@@ -260,3 +260,9 @@ body.druckmodus > *:not(.code-liste-seite):not(.feier) { display: none !importan
 .status { font-size: .82rem; color: var(--grau); }
 .status.aktiv { color: var(--gruen); }
 .status.offen { color: var(--gelb); }
+.whatsapp-text { font-size: .9rem; margin: 10px 0 0; }
+.team-karte { display: flex; flex-direction: column; gap: 4px; }
+.team-kopf { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.team-prozent { color: var(--gelb); font-weight: 900; font-size: 1.4rem; font-variant-numeric: tabular-nums; }
+.team-balken { margin: 4px 0; height: 14px; }
+.team-balken span { background: linear-gradient(90deg, var(--gelb), #ffe866); }

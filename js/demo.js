@@ -82,6 +82,20 @@ export async function demoRpc(name, a) {
     sichern(db);
     return true;
   }
+  if (name === 'team_fortschritt') {
+    kindPerCode(db, a.p_code);
+    const eigen = db.wochenplan.filter((p) => p.woche === a.p_woche && p.art === 'basis').map((p) => p.uebung_id);
+    const basis = eigen.length ? eigen : a.p_basis;
+    let ist = 0, soll = 0, fertig = 0;
+    for (const k of db.kinder) {
+      const erl = new Set(db.erledigung.filter((e) => e.kind_id === k.id && inWoche(e.datum, a.p_woche)).map((e) => e.uebung_id));
+      const extraSoll = 2 * verpasst(db, k.id, a.p_woche);
+      const i = basis.filter((id) => erl.has(id)).length + Math.min([...erl].filter((id) => !basis.includes(id)).length, extraSoll);
+      const so = basis.length + extraSoll;
+      ist += i; soll += so; if (so && i >= so) fertig++;
+    }
+    return { kinder: db.kinder.length, fertig, ist, soll };
+  }
   throw fehler('Unbekannte Funktion');
 }
 

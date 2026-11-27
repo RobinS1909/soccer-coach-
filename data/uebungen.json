@@ -62,6 +62,72 @@
       "jonglier-rekord"
     ]
   },
+  "standardWochen": [
+    {
+      "basis": [
+        "ballverlust-sprint",
+        "wandpass-challenge",
+        "kopf-freier-raum",
+        "abwehr-stellung"
+      ],
+      "zusatz": [
+        "annahme-tor",
+        "dreieck-wand",
+        "kopf-dritter",
+        "schulterblick-dribbling",
+        "zweikampf-duell",
+        "jonglier-rekord"
+      ]
+    },
+    {
+      "basis": [
+        "dreieck-wand",
+        "annahme-im-lauf",
+        "kopf-konter",
+        "spiegel-duell"
+      ],
+      "zusatz": [
+        "umschalt-farben",
+        "pass-tor-treffer",
+        "kurz-lang",
+        "kopf-abwehr",
+        "ballkontrolle-flur",
+        "laufweg-dreieck"
+      ]
+    },
+    {
+      "basis": [
+        "schulterblick-dribbling",
+        "annahme-tor",
+        "kopf-dritter",
+        "sprint-wende"
+      ],
+      "zusatz": [
+        "ballverlust-duell",
+        "wand-ping-pong",
+        "tor-wahl-dribbling",
+        "fussarbeit-quadrat",
+        "dribbel-slalom",
+        "kopf-raum-2"
+      ]
+    },
+    {
+      "basis": [
+        "dribbel-slalom",
+        "pass-slalom-wand",
+        "kopf-abwehr",
+        "umschalt-farben"
+      ],
+      "zusatz": [
+        "finte-uebersteiger",
+        "dreieck-zu-dritt",
+        "kopf-raum-3",
+        "ball-erobern",
+        "jonglier-rekord",
+        "kopf-passen"
+      ]
+    }
+  ],
   "uebungen": [
     {
       "id": "ballverlust-sprint",
