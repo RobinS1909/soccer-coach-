@@ -7,7 +7,7 @@ Platzhalter in [eckigen Klammern] ausfüllen.*
 
 Liebe Eltern,
 
-damit unsere U10-2 gut vorbereitet in die Rückrunde startet, möchten wir die Kinder zusätzlich zu
+damit unsere U10 gut vorbereitet in die Rückrunde startet, möchten wir die Kinder zusätzlich zu
 Hause trainieren lassen. Dafür nutzen wir die App **„SV Soltau – Soccer Coach“**. Die Kinder sehen
 dort ihre Übungen der Woche und haken erledigte Einheiten ab. Das Trainerteam sieht, wer was
 erledigt hat.
@@ -26,7 +26,7 @@ Gerätedaten. Es gibt **kein Tracking, keine Werbung und keine Analyse-Tools**.
 
 ## Wer hat Zugriff?
 - Ihr Kind sieht nur seine eigenen Daten.
-- Das Trainerteam der U10-2 sieht die Daten aller Kinder der Mannschaft.
+- Das Trainerteam der U10 sieht die Daten aller Kinder der Mannschaft.
 - Eine Weitergabe an Dritte findet nicht statt.
 
 ## Wo werden die Daten gespeichert?
