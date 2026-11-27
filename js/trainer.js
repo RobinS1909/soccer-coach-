@@ -1,7 +1,7 @@
 // Trainer-Bereich: Übersicht, Anwesenheit, Wochenplan, Kinder verwalten.
 import { demo, trainerSitzung, trainerLogin, trainerLogout, passwortVergessen, passwortSetzen } from './api.js';
 import { daten as td } from './trainer-daten.js';
-import { wocheVon, plusTage, isoDatum, ausIso, wochenText, berechneWoche } from './regeln.js';
+import { wocheVon, plusTage, isoDatum, ausIso, wochenText, berechneWoche, standardPlan, kw } from './regeln.js';
 import { esc, $, frage, meldung } from './util.js';
 
 let el;
@@ -111,9 +111,24 @@ function wochenWahlAktiv() {
 
 const titel = (id) => daten.uebungen.find((u) => u.id === id)?.titel || id;
 
+// Plan einer Woche: eigener Plan aus der Datenbank, sonst der automatische Wechsel-Plan
 async function ladePlan(w) {
   const p = await td.plan(w);
-  return { rows: p, basis: p.length ? p.filter((x) => x.art === 'basis').map((x) => x.uebung_id) : daten.standardWoche.basis, eigener: p.length > 0 };
+  const auto = standardPlan(daten, w);
+  const rows = p.length ? p : [...auto.basis.map((id) => ({ uebung_id: id, art: 'basis' })), ...auto.zusatz.map((id) => ({ uebung_id: id, art: 'zusatz' }))];
+  return { rows, basis: rows.filter((x) => x.art === 'basis').map((x) => x.uebung_id), eigener: p.length > 0, auto };
+}
+
+// Text für die WhatsApp-Gruppe (ohne Namen der Kinder)
+function wochenstandText({ kinderAnzahl, fertig, prozent, wocheIso, istAktuell }) {
+  const kopf = `⚽ *Wochenstand KW ${kw(wocheIso)} – U10*`;
+  const zahl = `🏆 *${fertig} von ${kinderAnzahl}* Kindern haben ihr Wochenziel schon geschafft!\n📊 Team-Fortschritt: *${prozent} %*`;
+  let schluss;
+  if (!istAktuell) schluss = prozent >= 80 ? 'Super Woche, Leute – das merkt man auf dem Platz! 💪' : 'Danke an alle, die dabei waren! Diese Woche schaffen wir noch mehr. 💪';
+  else if (prozent >= 80) schluss = 'Stark, Leute! 🔥 Wer noch fehlt: Bis Sonntag ist Zeit – holt euch euer Häkchen!';
+  else if (prozent >= 40) schluss = 'Halbzeit! ⏱️ Noch ein paar Minuten Training und der gelbe Balken ist voll. Bis Sonntag ist Zeit! 💪';
+  else schluss = 'Los geht’s! 🚀 Jede Übung dauert nur 5–10 Minuten. Wer beim Training gefehlt hat: denkt an die Extra-Einheiten!';
+  return `${kopf}\n\n${zahl}\n\n${schluss}\n\n👉 https://training.svsoltau.de/`;
 }
 
 // ---------- Übersicht ----------
@@ -131,11 +146,16 @@ async function uebersicht(inhalt) {
     return { k, erledigt: [...new Set(erledigt)], verpasst, r: berechneWoche({ basis: p.basis, verpasst, erledigt }) };
   });
   const fertig = zeilen.filter((z) => z.r.fertig).length;
+  const summeIst = zeilen.reduce((a, z) => a + z.r.ist, 0);
+  const summeSoll = zeilen.reduce((a, z) => a + z.r.soll, 0);
+  const prozent = summeSoll ? Math.round((summeIst / summeSoll) * 100) : 0;
   inhalt.innerHTML = `
     ${wochenWahl()}
-    ${!p.eigener ? `<div class="hinweis">Für diese Woche gibt es keinen eigenen Plan – es gilt der Standard-Plan.</div>` : ''}
+    ${!p.eigener ? `<div class="hinweis">Automatischer Plan ${p.auto.nummer} von ${p.auto.anzahl} (wechselt jede Woche). Ändern unter „Wochenplan“.</div>` : ''}
     <section class="karte"><p class="zahl"><strong>${fertig}</strong> von ${kids.length} Kindern haben ihr Soll erfüllt</p>
-    <p class="klein">${trainings.length} Training(s) in dieser Woche eingetragen · Pflicht: ${p.basis.length} Einheiten · +2 je verpasstes Training</p></section>
+    <div class="balken"><span style="width:${prozent}%"></span></div>
+    <p class="klein">Team-Fortschritt: ${prozent} % · ${trainings.length} Training(s) eingetragen · Pflicht: ${p.basis.length} Einheiten · +2 je verpasstes Training</p>
+    ${kids.length ? '<button class="knopf zweit" id="whatsapp">📋 Wochenstand für WhatsApp kopieren</button>' : ''}</section>
     <div class="liste">${zeilen.map(({ k, erledigt, verpasst, r }) => `
       <details class="kind-zeile ${r.fertig ? 'fertig' : ''}">
         <summary><span class="name">${esc(k.name)}</span><span class="mini-balken"><span style="width:${r.soll ? (r.ist / r.soll) * 100 : 0}%"></span></span><span class="wert">${r.ist}/${r.soll}${r.fertig ? ' ✓' : ''}</span></summary>
@@ -143,6 +163,23 @@ async function uebersicht(inhalt) {
         <p class="klein">Erledigt: ${erledigt.length ? erledigt.map((id) => esc(titel(id))).join(', ') : '–'}</p>
       </details>`).join('') || '<p>Noch keine Kinder angelegt.</p>'}</div>`;
   wochenWahlAktiv();
+  $('#whatsapp')?.addEventListener('click', async () => {
+    const text = wochenstandText({ kinderAnzahl: kids.length, fertig, prozent, wocheIso: woche, istAktuell: woche === wocheVon() });
+    let kopiert = false;
+    try { await navigator.clipboard.writeText(text); kopiert = true; } catch { /* Fallback unten */ }
+    zeigeText(kopiert ? 'Kopiert! In WhatsApp einfügen und senden.' : 'Text markieren, kopieren und in WhatsApp einfügen:', text);
+  });
+}
+
+function zeigeText(titel, text) {
+  const div = document.createElement('div');
+  div.className = 'feier';
+  div.innerHTML = `<div class="feier-box"><h2>${esc(titel)}</h2>
+    <textarea class="whatsapp-text" rows="10" readonly aria-label="Text für WhatsApp">${esc(text)}</textarea>
+    <button class="knopf">Fertig</button></div>`;
+  document.body.appendChild(div);
+  $('textarea', div).addEventListener('focus', (ev) => ev.target.select());
+  $('button', div).addEventListener('click', () => div.remove());
 }
 
 // ---------- Anwesenheit ----------
@@ -164,10 +201,16 @@ async function anwesenheit(inhalt) {
         <div class="anw-zeile"><span class="name">${esc(k.name)}</span>
           <button class="anw ${s === true ? 'da' : ''}" data-kid="${k.id}" data-wert="true">✓ Da</button>
           <button class="anw ${s === false ? 'weg' : ''}" data-kid="${k.id}" data-wert="false">✗ Fehlt</button></div>`; }).join('')}</div>
-      <p class="klein">Wer als „fehlt“ markiert ist, bekommt 2 Extra-Einheiten in dieser Woche.</p>
+      <p class="klein">Beim Eintragen sind erst einmal alle „da“ – tippe nur bei den Kindern auf „Fehlt“, die nicht da waren. Wer fehlt, bekommt 2 Extra-Einheiten in dieser Woche.</p>
       <button class="link" id="tr-loeschen">Dieses Training löschen</button>`}`;
   $('#tag').addEventListener('change', (ev) => { tag = ev.target.value || isoDatum(); render(); });
-  $('#anlegen')?.addEventListener('click', async () => { await td.trainingAnlegen(tag); render(); });
+  $('#anlegen')?.addEventListener('click', async () => {
+    await td.trainingAnlegen(tag);
+    // Alle zunächst als „da“ eintragen – dann nur noch die Fehlenden antippen
+    const [neu] = await td.trainings(tag, plusTage(tag, 1));
+    if (neu && kids.length) await td.anwesenheitSetzen(kids.map((k) => ({ training_id: neu.id, kind_id: k.id, anwesend: true })));
+    render();
+  });
   $('#alleda')?.addEventListener('click', async () => {
     await td.anwesenheitSetzen(kids.map((k) => ({ training_id: t.id, kind_id: k.id, anwesend: true })));
     render();
@@ -193,7 +236,7 @@ async function plan(inhalt) {
   const art = Object.fromEntries(p.rows.map((r) => [r.uebung_id, r.art]));
   inhalt.innerHTML = `
     ${wochenWahl()}
-    ${!p.eigener ? `<div class="hinweis">Noch kein eigener Plan – die Kinder sehen den Standard-Plan.<br><button class="knopf zweit" id="standard">Standard-Plan übernehmen und anpassen</button></div>` : ''}
+    ${!p.eigener ? `<div class="hinweis gelb">Diese Woche gilt der <strong>automatische Plan ${p.auto.nummer} von ${p.auto.anzahl}</strong> – er wechselt jede Woche von selbst. Du musst nichts tun. Tippst du unten etwas an, wird daraus dein eigener Plan für diese Woche.</div>` : `<div class="hinweis">Eigener Plan für diese Woche. <button class="link" id="auto">Zurück zum automatischen Plan</button></div>`}
     <p class="klein"><strong>Pflicht</strong> = für alle Kinder. <strong>Extra</strong> = Vorschläge für Kinder, die beim Training gefehlt haben (je Fehltraining 2 Einheiten).</p>
     <div class="liste">${[...daten.uebungen].sort((x, y) => Object.keys(daten.schwerpunkte).indexOf(x.schwerpunkt) - Object.keys(daten.schwerpunkte).indexOf(y.schwerpunkt)).map((u) => { const a = art[u.id] || ''; const sp = daten.schwerpunkte[u.schwerpunkt]; return `
       <div class="plan-zeile"><div><strong>${esc(u.titel)}</strong><span class="klein">${sp.icon} ${esc(sp.name)} · ${daten.arten[u.art].icon} · ${u.dauer} Min</span></div>
@@ -203,15 +246,17 @@ async function plan(inhalt) {
           <button data-art="zusatz" class="${a === 'zusatz' ? 'aktiv' : ''}">Extra</button>
         </div></div>`; }).join('')}</div>`;
   wochenWahlAktiv();
-  $('#standard')?.addEventListener('click', async () => {
-    const s = daten.standardWoche;
-    await td.planSetzen([...s.basis.map((id) => ({ woche, uebung_id: id, art: 'basis' })), ...s.zusatz.filter((id) => !s.basis.includes(id)).map((id) => ({ woche, uebung_id: id, art: 'zusatz' }))]);
+  $('#auto')?.addEventListener('click', async () => {
+    if (!(await frage('Eigenen Plan dieser Woche löschen und den automatischen Plan verwenden?', 'Ja, automatisch'))) return;
+    for (const r of p.rows) await td.planEntfernen(woche, r.uebung_id);
     render();
   });
   inhalt.querySelectorAll('.segment button').forEach((b) => b.addEventListener('click', async () => {
     const id = b.parentElement.dataset.id;
     const neu = b.dataset.art;
     try {
+      // Erste Änderung: automatischen Plan als eigenen Plan übernehmen, dann ändern
+      if (!p.eigener) await td.planSetzen(p.rows.map((r) => ({ woche, uebung_id: r.uebung_id, art: r.art })));
       if (neu) await td.planSetzen([{ woche, uebung_id: id, art: neu }]);
       else await td.planEntfernen(woche, id);
       b.parentElement.querySelectorAll('button').forEach((x) => x.classList.toggle('aktiv', x === b));

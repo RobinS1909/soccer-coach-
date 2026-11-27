@@ -59,3 +59,10 @@ export function berechneWoche({ basis, verpasst, erledigt }) {
   const ist = basisIst + extraIst;
   return { basisSoll: basis.length, basisIst, extraSoll, extraIst, soll, ist, fertig: soll > 0 && ist >= soll };
 }
+
+// Automatischer Wochenplan: wechselt nach Kalenderwoche durch die Pläne in uebungen.json
+export function standardPlan(daten, wocheIso) {
+  const liste = daten.standardWochen && daten.standardWochen.length ? daten.standardWochen : [daten.standardWoche];
+  const i = kw(wocheIso) % liste.length;
+  return { ...liste[i], nummer: i + 1, anzahl: liste.length };
+}

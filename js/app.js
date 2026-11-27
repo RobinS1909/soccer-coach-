@@ -4,7 +4,7 @@ import { demoZuruecksetzen, DEMO_CODES } from './demo.js';
 import * as kind from './kind.js';
 import { ABZEICHEN, werteAus } from './abzeichen.js';
 import { skizzeSvg } from './skizze.js';
-import { wocheVon, inWoche, berechneWoche, wochenText } from './regeln.js';
+import { wocheVon, inWoche, berechneWoche, wochenText, standardPlan } from './regeln.js';
 import { zeigeTrainer } from './trainer.js';
 import { esc, $, frage as nachfrage, meldung } from './util.js';
 
@@ -80,7 +80,7 @@ async function route() {
 }
 
 async function ladeWoche() {
-  woche = await kind.ladeWoche(wocheVon(), daten.standardWoche);
+  woche = await kind.ladeWoche(wocheVon(), standardPlan(daten, wocheVon()));
   return woche;
 }
 
@@ -121,6 +121,7 @@ async function zeigeWoche() {
       <p>${spruch}</p>
     </section>
     ${woche.verpasst > 0 ? `<div class="hinweis gelb">Du hast ${woche.verpasst === 1 ? 'ein Training' : `${woche.verpasst} Trainings`} verpasst. Dafür machst du <strong>${r.extraSoll} Extra-Einheiten</strong> (${r.extraIst} von ${r.extraSoll} geschafft).</div>` : ''}
+    <section class="karte team-karte" id="team-karte" hidden></section>
     <h2>Deine Pflicht-Einheiten</h2>
     <div class="liste">${woche.basis.filter((id) => nachId[id]).map((id) => uebungsKarte(nachId[id], set.has(id))).join('') || '<p class="klein">Diese Woche ist nichts geplant.</p>'}</div>
     ${extraListe.length ? `<h2>${woche.verpasst > 0 ? 'Extra-Einheiten (Pflicht für dich)' : 'Extra-Einheiten für Profis'}</h2>
@@ -129,6 +130,24 @@ async function zeigeWoche() {
     <a class="knopf zweit" href="#/alle">Alle Übungen ansehen</a>
     ${!online ? `<p class="klein mitte">Dein Fortschritt wird nur auf diesem Gerät gespeichert.</p>` : ''}
   `;
+  zeigeTeam(woche.basis);
+}
+
+// Team-Balken: wie viel hat die ganze U10 diese Woche geschafft? (ohne Namen)
+async function zeigeTeam(basis) {
+  const t = await kind.teamFortschritt(wocheVon(), basis);
+  const el = document.getElementById('team-karte');
+  if (!el || !t || t.kinder < 3 || !t.soll) return; // erst ab 3 Kindern, damit niemand Rückschlüsse ziehen kann
+  const prozent = Math.round((t.ist / t.soll) * 100);
+  let spruch = 'Jede Übung zählt fürs Team! 💪';
+  if (prozent >= 80) spruch = 'Wahnsinn, fast geschafft! 🔥';
+  else if (prozent >= 50) spruch = 'Mehr als die Hälfte – stark! 🔥';
+  else if (prozent >= 25) spruch = 'Das Team kommt in Fahrt! 🚀';
+  el.innerHTML = `
+    <div class="team-kopf"><strong>⚽ Team U10 diese Woche</strong><span class="team-prozent">${prozent} %</span></div>
+    <div class="balken team-balken" role="progressbar" aria-label="Team-Fortschritt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${prozent}"><span style="width:${prozent}%"></span></div>
+    <p class="klein">${t.fertig} von ${t.kinder} Kindern haben ihr Wochenziel schon geschafft. ${spruch}</p>`;
+  el.hidden = false;
 }
 
 function uebungsKarte(u, fertig) {

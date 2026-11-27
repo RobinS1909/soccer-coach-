@@ -124,3 +124,13 @@ export async function zuruecknehmen(uebungId) {
 export function lokaleDatenLoeschen() {
   [LOKAL, ERFOLGE].forEach((k) => schreiben(k, null));
 }
+
+// Team-Fortschritt der Woche (nur Summen aller Kinder, keine Namen). null = nicht verfügbar.
+export async function teamFortschritt(woche, basis) {
+  if (!online || !kindCode() || !basis.length) return null;
+  try {
+    return await rpc('team_fortschritt', { p_code: kindCode(), p_woche: woche, p_basis: basis });
+  } catch {
+    return null;
+  }
+}

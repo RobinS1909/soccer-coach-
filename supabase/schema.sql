@@ -257,3 +257,45 @@ revoke execute on function public.trainer_entfernen(text) from public, anon;
 grant execute on function public.trainer_liste() to authenticated;
 grant execute on function public.trainer_freischalten(text) to authenticated;
 grant execute on function public.trainer_entfernen(text) to authenticated;
+
+-- =====================================================================
+-- Team-Fortschritt für die Kinder-Ansicht (nur Summen, keine Namen)
+-- p_basis: Pflicht-Übungen des automatischen Plans (falls kein eigener Plan in der DB)
+-- =====================================================================
+create or replace function public.team_fortschritt(p_code text, p_woche date, p_basis text[]) returns json
+language plpgsql security definer set search_path = public as $$
+declare
+  k uuid := public.kind_per_code(p_code);
+  b text[];
+begin
+  if p_basis is null or cardinality(p_basis) = 0 or cardinality(p_basis) > 30 then
+    raise exception 'Plan ungültig' using errcode = 'P0001';
+  end if;
+  select coalesce(array_agg(uebung_id), p_basis) into b from public.wochenplan where woche = p_woche and art = 'basis';
+  return (
+    with je as (
+      select
+        (select count(distinct e.uebung_id) from public.erledigung e
+          where e.kind_id = kd.id and e.datum >= p_woche and e.datum < p_woche + 7 and e.uebung_id = any (b)) as basis_ist,
+        (select count(distinct e.uebung_id) from public.erledigung e
+          where e.kind_id = kd.id and e.datum >= p_woche and e.datum < p_woche + 7 and not (e.uebung_id = any (b))) as extra_erledigt,
+        2 * (select count(*) from public.anwesenheit a join public.training t on t.id = a.training_id
+          where a.kind_id = kd.id and not a.anwesend and t.datum >= p_woche and t.datum < p_woche + 7) as extra_soll
+      from public.kind kd
+    ), w as (
+      select basis_ist + least(extra_erledigt, extra_soll) as ist, cardinality(b) + extra_soll as soll from je
+    )
+    select json_build_object(
+      'kinder', count(*),
+      'fertig', count(*) filter (where soll > 0 and ist >= soll),
+      'ist', coalesce(sum(ist), 0),
+      'soll', coalesce(sum(soll), 0))
+    from w
+  );
+end $$;
+
+revoke execute on function public.team_fortschritt(text, date, text[]) from public;
+grant execute on function public.team_fortschritt(text, date, text[]) to anon, authenticated;
+
+-- Schnittstelle neu laden, damit neue Funktionen sofort erreichbar sind
+notify pgrst, 'reload schema';
