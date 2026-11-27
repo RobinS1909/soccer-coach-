@@ -1,6 +1,6 @@
 // Service Worker: macht die App offline nutzbar.
 // Bei jeder Änderung an Dateien VERSION erhöhen, damit Handys die neue Version laden.
-const VERSION = 'sc-v15';
+const VERSION = 'sc-v16';
 const DATEIEN = [
   './', 'index.html', 'css/app.css', 'config.js', 'manifest.webmanifest',
   'js/app.js', 'js/api.js', 'js/kind.js', 'js/trainer.js', 'js/regeln.js', 'js/abzeichen.js', 'js/skizze.js', 'js/speicher.js', 'js/util.js', 'js/demo.js', 'js/trainer-daten.js',
