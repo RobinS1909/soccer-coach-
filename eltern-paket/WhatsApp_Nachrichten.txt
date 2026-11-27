@@ -1,7 +1,6 @@
 SOCCER COACH – WHATSAPP-NACHRICHTEN
 Zum Kopieren. Reihenfolge: 1 → (Einwilligungen einsammeln) → 2 → 3 → 4 einzeln an jede Familie → 5 jede Woche → 6 bei Fragen.
-App-Adresse: https://robins1909.github.io/soccer-coach-/
-(Später, wenn training.svsoltau.de läuft, die Adresse in den Nachrichten austauschen.)
+App-Adresse: https://training.svsoltau.de
 
 ==================================================================
 1) AN DIE ELTERN-GRUPPE – ANKÜNDIGUNG + EINWILLIGUNG
@@ -29,7 +28,7 @@ Euer Trainerteam der U10
 ==================================================================
 Die App ist da! 🎉⚽
 
-👉 https://robins1909.github.io/soccer-coach-/
+👉 https://training.svsoltau.de
 
 *So legt ihr sie aufs Handy (1 Minute):*
 📱 *iPhone:* Link in *Safari* öffnen → Teilen-Symbol (□↑) → *„Zum Home-Bildschirm“*
