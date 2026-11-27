@@ -60,7 +60,7 @@ Diese zwei Werte sind öffentlich gedacht (sie stehen später sowieso in der App
 Du kannst sie Claude einfach in den Chat schreiben – Claude trägt sie ein und veröffentlicht die App.
 
 ### Schritt 7 – Testen
-1. App öffnen: **https://robins1909.github.io/soccer-coach-/**
+1. App öffnen: **https://training.svsoltau.de**
 2. Unten **Trainer** → mit deiner E-Mail + Passwort anmelden.
 3. **Kinder** → **Viele Kinder auf einmal anlegen** → Vornamen einfügen → Codes drucken.
 4. Mit einem Code als Kind anmelden und eine Übung abhaken → in **Übersicht** prüfen.

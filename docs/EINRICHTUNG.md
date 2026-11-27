@@ -12,7 +12,7 @@ Wir nutzen **GitHub Pages** (kostenlos, direkt bei GitHub).
 3. **Settings** (Zahnrad, evtl. über „…“) → links **Pages**.
 4. Bei **Source**: „Deploy from a branch“. Branch: **main**, Ordner: **/ (root)** → **Save**.
 5. Nach 1–2 Minuten erscheint oben die Adresse, z. B.
-   `https://robins1909.github.io/soccer-coach-/`
+   `https://training.svsoltau.de`
 
 > Hinweis: GitHub Pages ist bei einem kostenlosen Konto nur für **öffentliche** Repositories verfügbar.
 > Der Code enthält keine Kinderdaten – die liegen später nur in Supabase. Willst du das Repository
