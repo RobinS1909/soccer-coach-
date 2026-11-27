@@ -50,13 +50,16 @@
     "basis": [
       "ballverlust-sprint",
       "wandpass-challenge",
-      "kopf-freier-raum"
+      "kopf-freier-raum",
+      "abwehr-stellung"
     ],
     "zusatz": [
       "annahme-tor",
-      "abwehr-stellung",
       "dreieck-wand",
-      "kopf-ballverlust"
+      "kopf-dritter",
+      "schulterblick-dribbling",
+      "zweikampf-duell",
+      "jonglier-rekord"
     ]
   },
   "uebungen": [
