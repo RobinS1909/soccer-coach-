@@ -422,6 +422,7 @@ function zeigeInfo() {
     <section class="karte">
       <h1>Über die App</h1>
       <p>Soccer Coach ist die Heimtrainings-App der U10 des SV Soltau von 1912 e.V.</p>
+      <p><strong>Ansprechpartner:</strong> Robin Sedha (Trainer U10) · rs@svsoltau.de</p>
       <h2>Datenschutz in Kürze</h2>
       <ul>
         <li>Wir speichern nur: Vorname/Spitzname, erledigte Einheiten mit Datum und die Anwesenheit beim Training.</li>
